@@ -1,16 +1,22 @@
 import 'package:ecommerce_project/main.dart';
-import 'package:ecommerce_project/homePage.dart';
 import 'package:ecommerce_project/shopPage.dart';
 import 'package:ecommerce_project/aboutPage.dart';
 import 'package:ecommerce_project/contactPage.dart';
 import 'package:flutter/material.dart';
 
-class homePage extends StatelessWidget {
+class homePage extends StatefulWidget {
   const homePage({super.key});
 
   void navigateToShopPage(BuildContext context, String category) {
     Navigator.pushNamed(context, '/shop', arguments: {'category': category});
   }
+
+  @override
+  State<homePage> createState() => _homePageState();
+}
+
+
+class _homePageState extends State<homePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -90,21 +96,52 @@ class homePage extends StatelessWidget {
             ),
 
             //Featured Products
-            Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Text("Featured Products", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght'),)
-                  ),
+            SizedBox(height: 5,),
 
-                  
-                ],
-              )
-            )
-          ],
+            Container(
+              color: gold,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Text("Featured Products", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: blue, fontFamily: 'Nunito-VariableFont_wght'),)
+                    ),
+
+                    SizedBox(height: 20),
+
+                    GridView.count(
+                      physics: NeverScrollableScrollPhysics(),
+                      crossAxisCount: 3,
+                      shrinkWrap: true,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5,
+
+                      children: [
+                        'assets/homePage/Coconut.jpg',
+                        'assets/homePage/Pumpkin_Pie.jpg',
+                        'assets/homePage/Wet_Stone.jpg',
+                        'assets/homePage/Tabac_Ecarlate.jpg'
+                      ].map((path) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: blue, width: 1),
+                            borderRadius: BorderRadius.circular(1)
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(1),
+                            child: Image.asset(path, fit: BoxFit.cover),
+                          ),
+                        );
+                      }).toList()
+                    )
+            
+                  ],
+                )
+              )   
+            )  
+          ]
         ),
       ),
 

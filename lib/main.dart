@@ -1,12 +1,32 @@
+import 'package:ecommerce_project/authentication.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'homePage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async { 
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (kIsWeb){
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyAfN_SBcvkXPpI75_kxwp2wSkIim31lUUg",
+        authDomain: "reynoon-ecommerce.firebaseapp.com",
+        projectId: "reynoon-ecommerce",
+        storageBucket: "reynoon-ecommerce.firebasestorage.app",
+        messagingSenderId: "309552766360",
+        appId: "1:309552766360:web:29bc4bdeb783fb3df35fed"
+      )
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
+
   runApp(const eCommerce());
 }
 
-final Color gold = Color(0xFFF3C623);
-final Color blue = Color(0xFF10375C);
+final Color gold = Color(0xFFdbab2c);
+final Color blue = Color(0xFF010b13);
 final Color white = Color(0xFFF4F6FF);
 final Color whiteTextColor = Colors.white;
 final Color blackTextColor = Colors.black;
@@ -39,7 +59,7 @@ class eCommerce extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const homePage(),
+      home: const authentication(),
     );
   }
 }
