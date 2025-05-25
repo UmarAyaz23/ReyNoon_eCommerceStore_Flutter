@@ -1,7 +1,8 @@
-import 'package:ecommerce_project/authentication.dart';
+import 'package:ecommerce_project/signInPage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async { 
 
@@ -47,19 +48,16 @@ class eCommerce extends StatelessWidget {
           backgroundColor: blue,
           foregroundColor: gold
         ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            foregroundColor: gold,
-            backgroundColor: blue,
-            padding: EdgeInsets.symmetric(vertical: 7, horizontal: 14)
-          )
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: Color.fromRGBO(219, 171, 44, 0.2),
+          selectionHandleColor: gold
         ),
         textTheme: TextTheme(
           titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: whiteTextColor),
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const authentication(),
+      home: const signInPage(),
     );
   }
 }
