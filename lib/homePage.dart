@@ -1,6 +1,5 @@
 import 'package:ecommerce_project/main.dart';
 import 'package:ecommerce_project/shopPage.dart';
-import 'package:ecommerce_project/aboutPage.dart';
 import 'package:ecommerce_project/contactPage.dart';
 import 'package:flutter/material.dart';
 
@@ -21,84 +20,104 @@ class _homePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("REYNOON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: gold)), centerTitle: true),
+      appBar: AppBar(title: 
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            GestureDetector(
+              onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
+              child: Row(
+                children: <Widget>[
+                  Image.asset("assets/homePage/Logo.png", height: 40,),
+                  SizedBox(width: 10,),
+                  Text("REYNOON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: gold))
+                ]
+              )
+            ),
+
+            GestureDetector(
+              onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
+              child: Icon(Icons.shopping_bag, size: 30,)
+            )
+          ]
+        ),
+      ),
 
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 5,),
-            //Banner
-            SizedBox(
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width * 0.4,
+            //Banners
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width * 0.4,
 
-                    child: Stack(
-                      children: [
-                        Image.asset('assets/homePage/Banner_01.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity,),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: ElevatedButton(
-                              onPressed: () => null /*navigateToShopPage(context, 'Men')*/,
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: gold,
-                                backgroundColor: Colors.transparent,
-                                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(color: gold, width: 1)
-                                ),
-                              ),
-                              child: Text("Shop Men's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght')),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+              child: Stack(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset('assets/homePage/Banner_01.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
                   ),
-
-                  SizedBox(height: 5,),
-
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.width * 0.4,
-
-                    child: Stack(
-                      children: [
-                        Image.asset('assets/homePage/Banner_02.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
-                        Padding(
-                          padding: EdgeInsets.only(right: 10),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: ElevatedButton(
-                              onPressed: () => null /*navigateToShopPage(context, 'Women')*/,
-                              style: ElevatedButton.styleFrom(
-                                foregroundColor: gold,
-                                backgroundColor: Colors.transparent,
-                                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(color: gold, width: 1)
-                                ),
-                              ),
-                              child: Text("Shop Women's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght')),
-                            ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: ElevatedButton(
+                        onPressed: () => null /*navigateToShopPage(context, 'Men')*/,
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: gold,
+                          backgroundColor: Colors.transparent,
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: gold, width: 1),
+                            borderRadius: BorderRadius.circular(30)
                           ),
-                        )
-                        
-                      ],
+                        ),
+                        child: Text("Shop Men's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght')),
+                      ),
                     ),
+                  )
+                ]
+              )
+            ),
+                  
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width * 0.4,
+
+              child: Stack(
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.asset('assets/homePage/Banner_02.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
                   ),
-                ],
-              ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: ElevatedButton(
+                        onPressed: () => null /*navigateToShopPage(context, 'Men')*/,
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: gold,
+                          backgroundColor: Colors.transparent,
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: gold, width: 1),
+                            borderRadius: BorderRadius.circular(30)
+                          ),
+                        ),
+                        child: Text("Shop Women's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght')),
+                      ),
+                    ),
+                  )
+                ]
+              )
             ),
 
             //Featured Products
-            SizedBox(height: 5,),
-
             Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
               color: gold,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
@@ -144,87 +163,13 @@ class _homePageState extends State<homePage> {
           ]
         ),
       ),
-
-      endDrawer: Drawer(
-        width: 200,
-        backgroundColor: blue,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.zero,
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: gold, width: 1),), 
-                ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: Icon(Icons.arrow_back_rounded, color: gold,),
-                ),
-              ),
-            ),
-
-            GestureDetector(
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => shopPage())),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: gold, width: 1),),
-                ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text("Shop", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght',),),
-                  leading: Icon(Icons.shopping_bag, color: gold),
-                ),
-              ),
-            ),
-
-            GestureDetector(
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => aboutPage())),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: gold, width: 1),),
-                ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text("About", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght',),),
-                  leading: Icon(Icons.info, color: gold),
-                ),
-              ),
-            ),
-
-            GestureDetector(
-              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => contactPage())),
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 5),
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: gold, width: 1),),
-                ),
-                child: ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text("Contact", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght',),),
-                  leading: Icon(Icons.contact_page, color: gold),
-                ),
-              ),
-            ),
-          ]
-
-        )
-      ),
       
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home",),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shop"),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
         ],
         backgroundColor: blue,

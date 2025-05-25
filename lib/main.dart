@@ -1,8 +1,10 @@
-import 'package:ecommerce_project/signInPage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ecommerce_project/contactPage.dart';
+import 'package:ecommerce_project/homePage.dart';
+import 'package:ecommerce_project/signInPage.dart';
 
 void main() async { 
 
@@ -57,7 +59,7 @@ class eCommerce extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const signInPage(),
+      home: homePage(),
     );
   }
 }
