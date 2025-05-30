@@ -192,6 +192,7 @@ class _homePageState extends State<homePage> {
                 shrinkWrap: true,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 5,
+                childAspectRatio: 3,
                 children: [
                   {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
                   {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
@@ -201,13 +202,60 @@ class _homePageState extends State<homePage> {
                   final String name = names['name'] as String;
                   final Color color = names['color'] as Color;
 
+                  return SizedBox(
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: color
+                      ),
+                      child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: white, fontSize: 11))
+                    )
+                  );
+                }).toList()
+              )
+            ),
+          
+          
+            //Featured
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.05,
+              margin: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 5, end: 5),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: gold, width: 2)),
+              ),
+              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Categories", color: gold),)
+            ),
+
+            Padding(
+              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+                children: [
+                  "assets/homePage/Categories/Daily_Wear.jpg",
+                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                ].map<Widget>((path) {
                   return Container(
-                    height: 30,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: color
+                      color: Colors.transparent
                     ),
-                    child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: white, fontSize: 11))
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(15),
+                          child: Image.asset(path, fit: BoxFit.cover,),
+                        ),
+                      ]
+                    )
                   );
                 }).toList()
               )
