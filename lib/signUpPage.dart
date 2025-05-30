@@ -109,6 +109,7 @@ class _signUpPageState extends State<signUpPage> {
             TextField(
               style: TextStyle(color: gold),
               controller: passwordCheckController,
+              obscureText: true,
               keyboardType: TextInputType.visiblePassword,
               cursorColor: gold,
               decoration: InputDecoration(

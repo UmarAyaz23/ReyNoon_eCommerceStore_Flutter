@@ -1,7 +1,9 @@
 import 'package:ecommerce_project/main.dart';
+import 'package:ecommerce_project/reusableWidgets.dart';
 import 'package:ecommerce_project/shopPage.dart';
 import 'package:ecommerce_project/contactPage.dart';
 import 'package:flutter/material.dart';
+import 'package:r_icon_pro/r_icon_pro.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -13,7 +15,6 @@ class homePage extends StatefulWidget {
   @override
   State<homePage> createState() => _homePageState();
 }
-
 
 class _homePageState extends State<homePage> {
 
@@ -46,120 +47,171 @@ class _homePageState extends State<homePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //Banners
+            //What's New
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width * 0.4,
-
-              child: Stack(
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset('assets/homePage/Banner_01.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: ElevatedButton(
-                        onPressed: () => null /*navigateToShopPage(context, 'Men')*/,
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: gold,
-                          backgroundColor: Colors.transparent,
-                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(color: gold, width: 1),
-                            borderRadius: BorderRadius.circular(30)
-                          ),
-                        ),
-                        child: Text("Shop Men's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght')),
-                      ),
-                    ),
-                  )
-                ]
-              )
-            ),
-                  
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.width * 0.4,
-
-              child: Stack(
-                children: <Widget>[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: Image.asset('assets/homePage/Banner_02.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(right: 10),
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: ElevatedButton(
-                        onPressed: () => null /*navigateToShopPage(context, 'Men')*/,
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: gold,
-                          backgroundColor: Colors.transparent,
-                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(color: gold, width: 1),
-                            borderRadius: BorderRadius.circular(30)
-                          ),
-                        ),
-                        child: Text("Shop Women's", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: gold, fontFamily: 'Nunito-VariableFont_wght')),
-                      ),
-                    ),
-                  )
-                ]
-              )
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.05,
+              margin: EdgeInsetsDirectional.only(top: 0, bottom: 0, start: 5, end: 5),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: gold, width: 2)),
+              ),
+              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "What's New", color: gold),)
             ),
 
-            //Featured Products
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
-              color: gold,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Text("Featured Products", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: blue, fontFamily: 'Nunito-VariableFont_wght'),)
-                    ),
-
-                    SizedBox(height: 20),
-
-                    GridView.count(
-                      physics: NeverScrollableScrollPhysics(),
-                      crossAxisCount: 3,
-                      shrinkWrap: true,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 5,
-
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.2,
+              margin: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: gold
+              ),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: PageView(
                       children: [
-                        'assets/homePage/Coconut.jpg',
-                        'assets/homePage/Pumpkin_Pie.jpg',
-                        'assets/homePage/Wet_Stone.jpg',
-                        'assets/homePage/Tabac_Ecarlate.jpg'
-                      ].map((path) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: blue, width: 1),
-                            borderRadius: BorderRadius.circular(1)
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(1),
-                            child: Image.asset(path, fit: BoxFit.cover),
-                          ),
-                        );
-                      }).toList()
+                        Image.asset("assets/homePage/Banner_01.jpg", fit: BoxFit.cover),
+                        Image.asset("assets/homePage/Banner_02.jpg", fit: BoxFit.cover),
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsetsGeometry.all(5),
+                    child: Align(alignment: Alignment.centerLeft, child: Icon(Icons.arrow_back_ios, size: 25, color: gold,),)
+                  ),
+
+                  Padding(
+                    padding: EdgeInsetsGeometry.all(5),
+                    child: Align(alignment: Alignment.centerRight, child: Icon(Icons.arrow_forward_ios, size: 25, color: gold,),)
+                  )
+                ]
+              )
+            ),
+
+
+            //Our Offerings
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.05,
+              margin: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 5, end: 5),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: gold, width: 2)),
+              ),
+              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Our Offerings", color: gold),)
+            ),
+
+            Padding(
+              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+                children: [
+                  {'icon': Icon(RIcon.Delivery, size: 25, color: white,), 'text': 'Free Delivery'},
+                  {'icon': Icon(RIcon.User_Plus_Rounded, size: 25, color: white,), 'text': '24/7 Support'},
+                  {'icon': Icon(Icons.find_replace, size: 25, color: white,), 'text': '7 Days Replacement'},
+                  {'icon': Icon(RIcon.Medal_Star_Circle, size: 25, color: white,), 'text': '1 Year Warranty'},
+                ].map<Widget>((path) {
+                  final Icon icon = path['icon'] as Icon;
+                  final String text = path['text'] as String;
+
+                  return Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: gold
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        icon,
+                        SizedBox(height: 10,),
+                        ReusableWidgets.specialText(text: text, color: white, fontSize: 11)
+                      ],
                     )
-            
-                  ],
-                )
-              )   
-            )  
+                  );
+                }).toList()
+              )
+            ),
+
+
+            //Categories
+            Container(
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: MediaQuery.of(context).size.height * 0.05,
+              margin: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 5, end: 5),
+              decoration: BoxDecoration(
+                border: Border(bottom: BorderSide(color: gold, width: 2)),
+              ),
+              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Categories", color: gold),)
+            ),
+
+            Padding(
+              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+                children: [
+                  "assets/homePage/Categories/Daily_Wear.jpg",
+                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                ].map<Widget>((path) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: Colors.transparent
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadiusGeometry.circular(15),
+                          child: Image.asset(path, fit: BoxFit.cover,),
+                        ),
+                      ]
+                    )
+                  );
+                }).toList()
+              )
+            ),
+
+            Padding(
+              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
+              child: GridView.count(
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 5,
+                children: [
+                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
+                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
+                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
+                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)}, 
+                ].map<Widget>((names) {
+                  final String name = names['name'] as String;
+                  final Color color = names['color'] as Color;
+
+                  return Container(
+                    height: 30,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: color
+                    ),
+                    child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: white, fontSize: 11))
+                  );
+                }).toList()
+              )
+            ),
           ]
         ),
       ),

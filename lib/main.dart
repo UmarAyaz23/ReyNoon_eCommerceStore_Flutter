@@ -55,8 +55,8 @@ class eCommerce extends StatelessWidget {
           selectionHandleColor: gold
         ),
         textTheme: TextTheme(
-          titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w500, color: whiteTextColor),
-          bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w300, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
+          titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: whiteTextColor),
+          bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
       home: homePage(),
