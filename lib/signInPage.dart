@@ -36,7 +36,7 @@ class _signInPageState extends State<signInPage> {
                 margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.25, bottom: 0, left: 20, right: 20),
                 padding: EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(26),
                   color: white,
                   boxShadow: [
                     BoxShadow(
@@ -64,7 +64,7 @@ class _signInPageState extends State<signInPage> {
                           filled: true,
                           fillColor: Color.fromRGBO(219, 171, 44, 0.2),
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(15),
                             borderSide: const BorderSide(style: BorderStyle.none, width: 0)
                           ),
                         ),
@@ -86,7 +86,7 @@ class _signInPageState extends State<signInPage> {
                         filled: true,
                         fillColor: Color.fromRGBO(219, 171, 44, 0.2),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(15),
                           borderSide: const BorderSide(style: BorderStyle.none, width: 0)
                         ),
                       ),
@@ -112,7 +112,7 @@ class _signInPageState extends State<signInPage> {
                               backgroundColor: gold,
                               shape: RoundedRectangleBorder(
                                 side: const BorderSide(style: BorderStyle.none, width: 0),
-                                borderRadius: BorderRadius.circular(30)
+                                borderRadius: BorderRadius.circular(15)
                               ),
                             ),
                             child: Text("Sign In", style: TextStyle(fontSize: 16, color: white, fontWeight: FontWeight.w300, fontFamily: 'Nunito-VariableFont_wght'),)

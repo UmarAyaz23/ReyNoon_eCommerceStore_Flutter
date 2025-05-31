@@ -75,7 +75,7 @@ class _homePageState extends State<homePage> {
                 return Container(
                   margin: EdgeInsets.only(top: 7, bottom: 0, left: 10, right: 10),
                   child: ClipRRect(
-                    borderRadius: BorderRadiusGeometry.circular(15),
+                    borderRadius: BorderRadius.circular(15),
                     child: Image.asset(sliderList[index], fit: BoxFit.cover)
                   )
                 );
@@ -165,7 +165,7 @@ class _homePageState extends State<homePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadiusGeometry.circular(15),
+                          borderRadius: BorderRadius.circular(15),
                           child: Image.asset(path, fit: BoxFit.cover,),
                         ),
                       ]
@@ -220,8 +220,8 @@ class _homePageState extends State<homePage> {
             ),
 
             Container(
-              margin: EdgeInsets.only(top: 7, bottom: 0, left: 0, right: 0),
-              padding: EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
+              margin: EdgeInsets.only(top: 7, bottom: 10, left: 0, right: 0),
+              padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
               color: blue,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,

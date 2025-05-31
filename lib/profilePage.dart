@@ -82,7 +82,19 @@ class profilePage extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: ReusableWidgets.filledElevatedButton(label: "Log Out", onPressed: () => null)
+                    child: ElevatedButton(
+                      onPressed: ()=> null,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: white,
+                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: gold, width: 1.5),
+                          borderRadius: BorderRadius.circular(15)
+                        ),
+                      ),
+                      child: ReusableWidgets.specialText(text: "Log Out", color: gold, fontSize: 16)
+                    )
                   )
                 ]
               )

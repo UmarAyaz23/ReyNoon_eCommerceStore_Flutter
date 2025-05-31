@@ -62,7 +62,7 @@ class eCommerce extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const profilePage(),
+      home: const signInPage(),
     );
   }
 }

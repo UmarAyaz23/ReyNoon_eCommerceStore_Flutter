@@ -5,38 +5,41 @@ class ReusableWidgets {
   // 1. Elevated Buttons
   static Widget transparentElevatedButton({
     required String label,
+    required Color borderColor,
+    required Color textColor,
     required VoidCallback onPressed,
   }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        foregroundColor: gold,
         backgroundColor: Colors.transparent,
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: gold, width: 1),
-          borderRadius: BorderRadius.circular(30)
+          side: BorderSide(color: borderColor, width: 1),
+          borderRadius: BorderRadius.circular(15)
         ),
       ),
       onPressed: onPressed,
-      child: bodyText(text: label, color: gold),
+      child: bodyText(text: label, color: textColor),
     );
   }
 
   static Widget filledElevatedButton({
     required String label,
+    required Color backgroundColor,
+    required Color textColor,
     required VoidCallback onPressed,
   }) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-        backgroundColor: gold,
+        backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
           side: const BorderSide(style: BorderStyle.none, width: 0),
-          borderRadius: BorderRadius.circular(30)
+          borderRadius: BorderRadius.circular(15)
         ),
       ),
       onPressed: onPressed,
-      child: bodyText(text: label, color: white),
+      child: bodyText(text: label, color: textColor),
     );
   }
 
