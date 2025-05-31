@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/profilePage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -61,7 +62,7 @@ class eCommerce extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const signInPage(),
+      home: const profilePage(),
     );
   }
 }
