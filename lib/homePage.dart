@@ -87,7 +87,7 @@ class _homePageState extends State<homePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.5,
               height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 5, end: 5),
+              margin: EdgeInsetsDirectional.only(top: 20, bottom: 0, start: 5, end: 5),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: gold, width: 2)),
               ),
@@ -135,7 +135,7 @@ class _homePageState extends State<homePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.5,
               height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 5, end: 5),
+              margin: EdgeInsetsDirectional.only(top: 20, bottom: 0, start: 5, end: 5),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: gold, width: 2)),
               ),
@@ -176,7 +176,7 @@ class _homePageState extends State<homePage> {
             ),
 
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
+              padding: EdgeInsetsDirectional.only(top: 5, bottom: 0, start: 5, end: 5),
               child: GridView.count(
                 physics: NeverScrollableScrollPhysics(),
                 crossAxisCount: 4,
@@ -185,10 +185,10 @@ class _homePageState extends State<homePage> {
                 crossAxisSpacing: 5,
                 childAspectRatio: 3,
                 children: [
-                  {'name': 'Luxury', 'color': Color(0xFFc78998)},
-                  {'name': 'Daily (Women)', 'color': Color(0xFFc78998)},
-                  {'name': 'Luxury (Men)', 'color': Color(0xFFc78998)},
-                  {'name': 'Luxury (Women)', 'color': Color(0xFFc78998)}, 
+                  {'name': 'Luxury', 'color': blue},
+                  {'name': 'Daily (Women)', 'color': blue},
+                  {'name': 'Luxury (Men)', 'color': blue},
+                  {'name': 'Luxury (Women)', 'color': blue}, 
                 ].map<Widget>((names) {
                   final String name = names['name'] as String;
                   final Color color = names['color'] as Color;
@@ -200,7 +200,7 @@ class _homePageState extends State<homePage> {
                         borderRadius: BorderRadius.circular(15),
                         color: color
                       ),
-                      child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: white, fontSize: 11))
+                      child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: gold, fontSize: 11))
                     )
                   );
                 }).toList()
@@ -212,11 +212,124 @@ class _homePageState extends State<homePage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.5,
               height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 5, end: 5),
+              margin: EdgeInsetsDirectional.only(top: 20, bottom: 0, start: 5, end: 5),
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: gold, width: 2)),
               ),
               child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Featured", color: gold),)
+            ),
+
+            Container(
+              margin: EdgeInsets.only(top: 7, bottom: 0, left: 0, right: 0),
+              padding: EdgeInsets.only(top: 10, bottom: 20, left: 10, right: 10),
+              color: blue,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.all(5),
+                      color: white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/homePage/Categories/menLuxury/menLuxury_03.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              spacing: 5,
+                              children: [
+                                ReusableWidgets.specialText(text: "Men's Luxury 03", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
+                              ]
+                            )
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.all(5),
+                      color: white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/homePage/Categories/womenDaily/womenDaily_03.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              spacing: 5,
+                              children: [
+                                ReusableWidgets.specialText(text: "Women's Daily 03", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
+                              ]
+                            )
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.all(5),
+                      color: white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/homePage/Categories/menLuxury/menLuxury_04.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              spacing: 5,
+                              children: [
+                                ReusableWidgets.specialText(text: "Men's Luxury 04", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
+                              ]
+                            )
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      padding: EdgeInsets.all(5),
+                      color: white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Image.asset("assets/homePage/Categories/womenDaily/womenDaily_04.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              spacing: 5,
+                              children: [
+                                ReusableWidgets.specialText(text: "Women's Daily 04", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
+                              ]
+                            )
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ]
         ),

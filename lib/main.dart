@@ -31,6 +31,8 @@ void main() async {
 final Color gold = Color(0xFFdbab2c);
 final Color blue = Color(0xFF010b13);
 final Color white = Color(0xFFF4F6FF);
+final Color deepGreen = Color(0xFF031926);
+final Color lightPink = Color(0xFFefe5e3);
 final Color whiteTextColor = Colors.white;
 final Color blackTextColor = Colors.black;
 
@@ -59,7 +61,7 @@ class eCommerce extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const homePage(),
+      home: const signInPage(),
     );
   }
 }
