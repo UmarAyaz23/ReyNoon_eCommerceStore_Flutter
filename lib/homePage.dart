@@ -4,6 +4,7 @@ import 'package:ecommerce_project/shopPage.dart';
 import 'package:ecommerce_project/contactPage.dart';
 import 'package:flutter/material.dart';
 import 'package:r_icon_pro/r_icon_pro.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -17,6 +18,12 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
+  final List<String> sliderList = [
+    "assets/homePage/Categories/menLuxury/menLuxury_01.jpg", 
+    "assets/homePage/Categories/womenDaily/womenDaily_01.jpg",
+    "assets/homePage/Categories/menLuxury/menLuxury_02.jpg",
+    "assets/homePage/Categories/womenDaily/womenDaily_02.jpg",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -58,37 +65,21 @@ class _homePageState extends State<homePage> {
               child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "What's New", color: gold),)
             ),
 
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.2,
-              margin: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: gold
-              ),
-              child: Stack(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(15),
-                    child: PageView(
-                      children: [
-                        Image.asset("assets/homePage/Banner_01.jpg", fit: BoxFit.cover),
-                        Image.asset("assets/homePage/Banner_02.jpg", fit: BoxFit.cover),
-                      ],
-                    ),
-                  ),
-
-                  Padding(
-                    padding: EdgeInsetsGeometry.all(5),
-                    child: Align(alignment: Alignment.centerLeft, child: Icon(Icons.arrow_back_ios, size: 25, color: gold,),)
-                  ),
-
-                  Padding(
-                    padding: EdgeInsetsGeometry.all(5),
-                    child: Align(alignment: Alignment.centerRight, child: Icon(Icons.arrow_forward_ios, size: 25, color: gold,),)
+            VxSwiper.builder(
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 2),
+              height: MediaQuery.of(context).size.width,
+              enlargeCenterPage: true,
+              itemCount: sliderList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(top: 7, bottom: 0, left: 10, right: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadiusGeometry.circular(15),
+                    child: Image.asset(sliderList[index], fit: BoxFit.cover)
                   )
-                ]
-              )
+                );
+              }
             ),
 
 
@@ -160,10 +151,10 @@ class _homePageState extends State<homePage> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 5,
                 children: [
-                  "assets/homePage/Categories/Daily_Wear.jpg",
-                  "assets/homePage/Categories/Daily_Wear.jpg", 
-                  "assets/homePage/Categories/Daily_Wear.jpg", 
-                  "assets/homePage/Categories/Daily_Wear.jpg", 
+                  "assets/homePage/Categories/Luxury/luxuryBanner.jpg",
+                  "assets/homePage/Categories/womenDaily/womenDaily_Banner.jpg", 
+                  "assets/homePage/Categories/menLuxury/menLuxury_Banner.jpg", 
+                  "assets/homePage/Categories/menLuxury/menLuxury_Banner.jpg", 
                 ].map<Widget>((path) {
                   return Container(
                     decoration: BoxDecoration(
@@ -194,10 +185,10 @@ class _homePageState extends State<homePage> {
                 crossAxisSpacing: 5,
                 childAspectRatio: 3,
                 children: [
-                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
-                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
-                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)},
-                  {'name': 'Daily Wear', 'color': Color(0xFFc78998)}, 
+                  {'name': 'Luxury', 'color': Color(0xFFc78998)},
+                  {'name': 'Daily (Women)', 'color': Color(0xFFc78998)},
+                  {'name': 'Luxury (Men)', 'color': Color(0xFFc78998)},
+                  {'name': 'Luxury (Women)', 'color': Color(0xFFc78998)}, 
                 ].map<Widget>((names) {
                   final String name = names['name'] as String;
                   final Color color = names['color'] as Color;
@@ -225,40 +216,7 @@ class _homePageState extends State<homePage> {
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(color: gold, width: 2)),
               ),
-              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Categories", color: gold),)
-            ),
-
-            Padding(
-              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
-              child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 4,
-                shrinkWrap: true,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 5,
-                children: [
-                  "assets/homePage/Categories/Daily_Wear.jpg",
-                  "assets/homePage/Categories/Daily_Wear.jpg", 
-                  "assets/homePage/Categories/Daily_Wear.jpg", 
-                  "assets/homePage/Categories/Daily_Wear.jpg", 
-                ].map<Widget>((path) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.transparent
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadiusGeometry.circular(15),
-                          child: Image.asset(path, fit: BoxFit.cover,),
-                        ),
-                      ]
-                    )
-                  );
-                }).toList()
-              )
+              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Featured", color: gold),)
             ),
           ]
         ),

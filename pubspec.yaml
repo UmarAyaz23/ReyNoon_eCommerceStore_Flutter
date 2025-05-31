@@ -38,6 +38,7 @@ dependencies:
   firebase_auth: ^5.5.4
   google_maps_flutter: ^2.12.2
   r_icon_pro: ^1.0.3
+  velocity_x: ^4.3.1
 
 
 dev_dependencies:
@@ -64,14 +65,27 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/homePage/Banner_01.jpg
-    - assets/homePage/Banner_02.jpg
     - assets/homePage/Logo.png
-    - assets/homePage/Categories/Daily_Wear.jpg
-    - assets/homePage/Categories/Luxury.jpg
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
+    - assets/homePage/Banner_01.jpg
+    - assets/homePage/Banner_01.jpg
+    - assets/homePage/Categories/Luxury/luxuryBanner.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_01.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_02.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_03.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_04.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_05.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_06.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_07.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_08.jpg
+    - assets/homePage/Categories/menLuxury/menLuxury_Banner.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_01.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_02.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_03.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_04.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_05.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_06.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_07.jpg
+    - assets/homePage/Categories/womenDaily/womenDaily_Banner.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
