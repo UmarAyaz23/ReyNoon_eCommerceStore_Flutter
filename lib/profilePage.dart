@@ -1,11 +1,18 @@
 import 'package:ecommerce_project/main.dart';
 import 'package:ecommerce_project/reusableWidgets.dart';
+import 'package:ecommerce_project/signInPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:r_icon_pro/r_icon_pro.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class profilePage extends StatelessWidget {
-  const profilePage({super.key});
+  profilePage({super.key});
+  final List<Map<String, dynamic>> generalOptions = [
+    {'icon': Icon(Icons.help_center_rounded, size: 25, color: gold,), 'text': Text('Help Center', style: TextStyle(color: gold, fontSize: 16, fontWeight: FontWeight.normal))},
+    {'icon': Icon(Icons.policy_rounded, size: 25, color: gold,), 'text': Text('Terms & Policies', style: TextStyle(color: gold, fontSize: 16, fontWeight: FontWeight.normal))},
+    {'icon': Icon(Icons.payment_rounded, size: 25, color: gold,), 'text': Text('Payment Methods', style: TextStyle(color: gold, fontSize: 16, fontWeight: FontWeight.normal))},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -22,60 +29,83 @@ class profilePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(height: 10,),
-              ReusableWidgets.headText(text: "Username", color: gold),
+              ReusableWidgets.headText(text: FirebaseAuth.instance.currentUser?.displayName ?? FirebaseAuth.instance.currentUser?.email ?? "User", color: gold),
 
+              //Banner
               Container(
                 margin: const EdgeInsets.only(top: 10),
-                padding: const EdgeInsets.all(10),
-                height: 80,
+                height: 90,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: gold
                 ),
+
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset("assets/homePage/Banner_01.jpg", fit: BoxFit.cover,),
+                ),
+              ),
+              
+              //Tiles
+              Padding(
+                padding: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 0, end: 0),
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 1.5,
+                  children: [
+                    {'icon': Icon(RIcon.List, size: 25, color: white,), 'text': 'Orders'},
+                    {'icon': Icon(RIcon.Heart_, size: 25, color: white,), 'text': 'Favourites'},
+                    {'icon': Icon(Icons.map_rounded, size: 25, color: white,), 'text': 'Addresses'},
+                  ].map<Widget>((path) {
+                    final Icon icon = path['icon'] as Icon;
+                    final String text = path['text'] as String;
+
+                    return Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: gold
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          icon,
+                          ReusableWidgets.specialText(text: text, color: white, fontSize: 16)
+                        ],
+                      )
+                    );
+                  }).toList()
+                )
               ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.all(10),
-                    height: 80,
-                    width: MediaQuery.of(context).size.width * 0.46,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: gold
-                    ),
+              //General Options
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: white,
+                  borderRadius: BorderRadius.circular(15) ,
+                  border: Border.all(color: gold, width: 1.5)
+                ),
 
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(RIcon.Notes_Minimalistic, size: 25, color: white,),
-                        ReusableWidgets.specialText(text: "Orders", color: white, fontSize: 16)
-                      ],
-                    ),
-                  ),
-
-                  Container(
-                    margin: const EdgeInsets.only(top: 10),
-                    padding: const EdgeInsets.all(10),
-                    height: 80,
-                    width: MediaQuery.of(context).size.width * 0.46,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: gold
-                    ),
-
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(RIcon.Map, size: 25, color: white,),
-                        ReusableWidgets.specialText(text: "Addresses", color: white, fontSize: 16)
-                      ],
-                    ),
-                  )
-                ],
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: generalOptions.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      leading: generalOptions[index]["icon"],
+                      title: generalOptions[index]["text"],
+                      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 25, color: gold,),
+                      tileColor: white,
+                    );
+                  }
+                ),
               ),
 
               SizedBox(height: 10,),
@@ -83,7 +113,10 @@ class profilePage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: ()=> null,
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => signInPage()));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: white,
                         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),

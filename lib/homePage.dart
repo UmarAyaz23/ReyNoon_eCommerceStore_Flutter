@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/main.dart';
+import 'package:ecommerce_project/profilePage.dart';
 import 'package:ecommerce_project/reusableWidgets.dart';
 import 'package:ecommerce_project/shopPage.dart';
 import 'package:ecommerce_project/contactPage.dart';
@@ -24,6 +25,32 @@ class _homePageState extends State<homePage> {
     "assets/homePage/Categories/menLuxury/menLuxury_02.jpg",
     "assets/homePage/Categories/womenDaily/womenDaily_02.jpg",
   ];
+
+  int _selectedIndex = 0;
+  final List<Widget> _screens = [
+    const homePage(),
+    const shopPage(),
+    const contactPage(),
+    profilePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    if (_selectedIndex == index) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => _screens[index]),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => _screens[index]),
+      );
+    }
+
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -346,6 +373,8 @@ class _homePageState extends State<homePage> {
         backgroundColor: blue,
         selectedItemColor: gold,
         unselectedItemColor: gold,
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
       ),
     );
   }

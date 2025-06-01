@@ -36,7 +36,7 @@ final Color deepGreen = Color(0xFF031926);
 final Color lightPink = Color(0xFFefe5e3);
 final Color whiteTextColor = Colors.white;
 final Color blackTextColor = Colors.black;
-
+final Color lightGray = Colors.grey;
 class eCommerce extends StatelessWidget {
   const eCommerce({super.key});
 
@@ -62,7 +62,7 @@ class eCommerce extends StatelessWidget {
           bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
         )
       ),
-      home: const signInPage(),
+      home: homePage(),
     );
   }
 }
