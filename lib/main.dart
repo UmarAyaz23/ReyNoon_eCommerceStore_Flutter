@@ -1,11 +1,4 @@
-import 'package:ecommerce_project/profilePage.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ecommerce_project/contactPage.dart';
-import 'package:ecommerce_project/homePage.dart';
-import 'package:ecommerce_project/signInPage.dart';
+import 'package:ecommerce_project/imports.dart';
 
 void main() async { 
 
@@ -31,12 +24,8 @@ void main() async {
 
 final Color gold = Color(0xFFdbab2c);
 final Color blue = Color(0xFF010b13);
-final Color white = Color(0xFFF4F6FF);
-final Color deepGreen = Color(0xFF031926);
-final Color lightPink = Color(0xFFefe5e3);
-final Color whiteTextColor = Colors.white;
-final Color blackTextColor = Colors.black;
-final Color lightGray = Colors.grey;
+final Color white = Color(0xFFFFFFFF);
+
 class eCommerce extends StatelessWidget {
   const eCommerce({super.key});
 
@@ -57,10 +46,6 @@ class eCommerce extends StatelessWidget {
           selectionColor: Color.fromRGBO(219, 171, 44, 0.2),
           selectionHandleColor: gold
         ),
-        textTheme: TextTheme(
-          titleLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: whiteTextColor),
-          bodyMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: whiteTextColor, fontFamily: 'Nunito-VariableFont_wght')
-        )
       ),
       home: homePage(),
     );

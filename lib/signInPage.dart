@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ecommerce_project/main.dart';
-import 'package:ecommerce_project/homePage.dart';
-import 'package:ecommerce_project/signUpPage.dart';
+import 'package:ecommerce_project/imports.dart';
 
 class signInPage extends StatefulWidget {
   const signInPage({super.key});

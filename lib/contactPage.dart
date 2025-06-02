@@ -1,10 +1,31 @@
-import 'package:ecommerce_project/main.dart';
-import 'package:ecommerce_project/homePage.dart';
-import 'package:ecommerce_project/shopPage.dart';
-import 'package:flutter/material.dart';
+import 'package:ecommerce_project/imports.dart';
 
-class contactPage extends StatelessWidget {
+
+
+class contactPage extends StatefulWidget {
   const contactPage({super.key});
+
+  @override
+  State<contactPage> createState() => _contactPageState();
+}
+
+class _contactPageState extends State<contactPage> {
+  int _selectedIndex = 0;
+  final List<Widget> _screens = [
+    const homePage(),
+    const shopPage(),
+    const contactPage(),
+    profilePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => _screens[index]),);
+
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +38,7 @@ class contactPage extends StatelessWidget {
               onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
               child: Row(
                 children: <Widget>[
-                  Image.asset("assets/homePage/Logo.png", width: 40,),
+                  Image.asset("assets/Logo.png", width: 40,),
                   SizedBox(width: 10,),
                   Text("REYNOON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: gold))
                 ]
@@ -40,7 +61,7 @@ class contactPage extends StatelessWidget {
             height: MediaQuery.of(context).size.width * 0.3,
             child: Stack(
               children: [
-                Image.asset('assets/homePage/Banner_01.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity,),
+                Image.asset('assets/Banner_01.jpg', fit: BoxFit.cover, width: double.infinity, height: double.infinity,),
                 Align(
                   alignment: Alignment.center,
                   child: Text("#CONTACT US", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: gold),),
@@ -87,6 +108,22 @@ class contactPage extends StatelessWidget {
             ),
           )
         ],
+      ),
+
+
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home",),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shop"),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
+        ],
+        backgroundColor: blue,
+        selectedItemColor: gold,
+        unselectedItemColor: gold,
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
       ),
     );
   }

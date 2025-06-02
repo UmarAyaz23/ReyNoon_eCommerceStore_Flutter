@@ -65,27 +65,51 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/homePage/Logo.png
-    - assets/homePage/Banner_01.jpg
-    - assets/homePage/Banner_01.jpg
-    - assets/homePage/Categories/Luxury/luxuryBanner.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_01.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_02.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_03.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_04.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_05.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_06.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_07.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_08.jpg
-    - assets/homePage/Categories/menLuxury/menLuxury_Banner.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_01.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_02.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_03.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_04.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_05.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_06.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_07.jpg
-    - assets/homePage/Categories/womenDaily/womenDaily_Banner.jpg
+    - assets/Logo.png
+    - assets/Banner_01.jpg
+    - assets/Banner_01.jpg
+
+    - assets/Categories/menLuxury/menLuxury_01.jpg
+    - assets/Categories/menLuxury/menLuxury_02.jpg
+    - assets/Categories/menLuxury/menLuxury_03.jpg
+    - assets/Categories/menLuxury/menLuxury_04.jpg
+    - assets/Categories/menLuxury/menLuxury_05.jpg
+    - assets/Categories/menLuxury/menLuxury_06.jpg
+    - assets/Categories/menLuxury/menLuxury_07.jpg
+    - assets/Categories/menLuxury/menLuxury_08.jpg
+    - assets/Categories/menLuxury/menLuxury_Banner.jpg
+
+    - assets/Categories/menDaily/menDaily_01.jpg
+    - assets/Categories/menDaily/menDaily_02.jpg
+    - assets/Categories/menDaily/menDaily_03.jpg
+    - assets/Categories/menDaily/menDaily_04.jpg
+    - assets/Categories/menDaily/menDaily_05.jpg
+    - assets/Categories/menDaily/menDaily_06.jpg
+    - assets/Categories/menDaily/menDaily_07.jpg
+    - assets/Categories/menDaily/menDaily_08.jpg
+    - assets/Categories/menDaily/menDaily_09.jpg
+    - assets/Categories/menDaily/menDaily_10.jpg
+    - assets/Categories/menDaily/menDaily_11.jpg
+    - assets/Categories/menDaily/menDaily_12.jpg
+    - assets/Categories/menDaily/menDaily_Banner.jpg
+
+    - assets/Categories/womenLuxury/womenLuxury_01.jpg
+    - assets/Categories/womenLuxury/womenLuxury_02.jpg
+    - assets/Categories/womenLuxury/womenLuxury_03.jpg
+    - assets/Categories/womenLuxury/womenLuxury_04.jpg
+    - assets/Categories/womenLuxury/womenLuxury_05.jpg
+    - assets/Categories/womenLuxury/womenLuxury_06.jpg
+    - assets/Categories/womenLuxury/womenLuxury_07.jpg
+    - assets/Categories/womenLuxury/womenLuxury_Banner.jpg
+    
+    - assets/Categories/womenDaily/womenDaily_01.jpg
+    - assets/Categories/womenDaily/womenDaily_02.jpg
+    - assets/Categories/womenDaily/womenDaily_03.jpg
+    - assets/Categories/womenDaily/womenDaily_04.jpg
+    - assets/Categories/womenDaily/womenDaily_05.jpg
+    - assets/Categories/womenDaily/womenDaily_06.jpg
+    - assets/Categories/womenDaily/womenDaily_07.jpg
+    - assets/Categories/womenDaily/womenDaily_Banner.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 

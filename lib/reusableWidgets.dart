@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:ecommerce_project/main.dart';
+import 'package:ecommerce_project/imports.dart';
 
 class ReusableWidgets {
   // 1. Elevated Buttons
@@ -22,6 +21,7 @@ class ReusableWidgets {
       child: bodyText(text: label, color: textColor),
     );
   }
+
 
   static Widget filledElevatedButton({
     required String label,
@@ -75,6 +75,7 @@ class ReusableWidgets {
       ),
     );
   }
+
 
   // 2. Special Text
   static Widget specialText({

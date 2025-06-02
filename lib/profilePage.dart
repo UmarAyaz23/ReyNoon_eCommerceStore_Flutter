@@ -1,10 +1,5 @@
-import 'package:ecommerce_project/main.dart';
-import 'package:ecommerce_project/reusableWidgets.dart';
-import 'package:ecommerce_project/signInPage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:r_icon_pro/r_icon_pro.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:ecommerce_project/imports.dart';
+
 
 class profilePage extends StatelessWidget {
   profilePage({super.key});

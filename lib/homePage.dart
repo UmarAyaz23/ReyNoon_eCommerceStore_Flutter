@@ -1,30 +1,17 @@
-import 'package:ecommerce_project/main.dart';
-import 'package:ecommerce_project/profilePage.dart';
-import 'package:ecommerce_project/reusableWidgets.dart';
-import 'package:ecommerce_project/shopPage.dart';
-import 'package:ecommerce_project/contactPage.dart';
-import 'package:flutter/material.dart';
-import 'package:r_icon_pro/r_icon_pro.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:ecommerce_project/imports.dart';
+
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
-
-  void navigateToShopPage(BuildContext context, String category) {
-    Navigator.pushNamed(context, '/shop', arguments: {'category': category});
-  }
 
   @override
   State<homePage> createState() => _homePageState();
 }
 
 class _homePageState extends State<homePage> {
-  final List<String> sliderList = [
-    "assets/homePage/Categories/menLuxury/menLuxury_01.jpg", 
-    "assets/homePage/Categories/womenDaily/womenDaily_01.jpg",
-    "assets/homePage/Categories/menLuxury/menLuxury_02.jpg",
-    "assets/homePage/Categories/womenDaily/womenDaily_02.jpg",
-  ];
+  void navigateToShopPage(BuildContext context, String category) {
+    Navigator.pushNamed(context, '/shop', arguments: {'category': category});
+  }
 
   int _selectedIndex = 0;
   final List<Widget> _screens = [
@@ -35,22 +22,20 @@ class _homePageState extends State<homePage> {
   ];
 
   void _onItemTapped(int index) {
-    if (_selectedIndex == index) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => _screens[index]),
-      );
-    } else {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => _screens[index]),
-      );
-    }
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => _screens[index]),);
 
     setState(() {
       _selectedIndex = index;
     });
   }
+
+  final List<String> sliderList = [
+    "assets/Categories/menLuxury/menLuxury_01.jpg", 
+    "assets/Categories/womenLuxury/womenLuxury_01.jpg",
+    "assets/Categories/menDaily/menDaily_01.jpg",
+    "assets/Categories/womenDaily/womenDaily_01.jpg",
+  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +48,7 @@ class _homePageState extends State<homePage> {
               onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
               child: Row(
                 children: <Widget>[
-                  Image.asset("assets/homePage/Logo.png", height: 40,),
+                  Image.asset("assets/Logo.png", height: 40,),
                   SizedBox(width: 10,),
                   Text("REYNOON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: gold))
                 ]
@@ -178,10 +163,10 @@ class _homePageState extends State<homePage> {
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 5,
                 children: [
-                  "assets/homePage/Categories/Luxury/luxuryBanner.jpg",
-                  "assets/homePage/Categories/womenDaily/womenDaily_Banner.jpg", 
-                  "assets/homePage/Categories/menLuxury/menLuxury_Banner.jpg", 
-                  "assets/homePage/Categories/menLuxury/menLuxury_Banner.jpg", 
+                  "assets/Categories/menLuxury/menluxury_Banner.jpg",
+                  "assets/Categories/womenLuxury/womenluxury_Banner.jpg",
+                  "assets/Categories/menDaily/menDaily_Banner.jpg",
+                  "assets/Categories/womenDaily/womenDaily_Banner.jpg",  
                 ].map<Widget>((path) {
                   return Container(
                     decoration: BoxDecoration(
@@ -212,10 +197,10 @@ class _homePageState extends State<homePage> {
                 crossAxisSpacing: 5,
                 childAspectRatio: 3,
                 children: [
-                  {'name': 'Luxury', 'color': blue},
-                  {'name': 'Daily (Women)', 'color': blue},
-                  {'name': 'Luxury (Men)', 'color': blue},
-                  {'name': 'Luxury (Women)', 'color': blue}, 
+                  {'name': 'Luxury - Men', 'color': gold},
+                  {'name': 'Luxury - Women', 'color': gold},
+                  {'name': 'Daily - Men', 'color': gold},
+                  {'name': 'Daily - Women', 'color': gold}, 
                 ].map<Widget>((names) {
                   final String name = names['name'] as String;
                   final Color color = names['color'] as Color;
@@ -224,8 +209,8 @@ class _homePageState extends State<homePage> {
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: color
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: color, width: 1.5)
                       ),
                       child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: gold, fontSize: 11))
                     )
@@ -262,7 +247,7 @@ class _homePageState extends State<homePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset("assets/homePage/Categories/menLuxury/menLuxury_03.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Image.asset("assets/Categories/menLuxury/menLuxury_05.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
@@ -271,7 +256,7 @@ class _homePageState extends State<homePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               spacing: 5,
                               children: [
-                                ReusableWidgets.specialText(text: "Men's Luxury 03", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Men's Luxury 05", color: blue, fontSize: 12),
                                 ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
                               ]
                             )
@@ -287,7 +272,7 @@ class _homePageState extends State<homePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset("assets/homePage/Categories/womenDaily/womenDaily_03.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Image.asset("assets/Categories/womenDaily/womenDaily_05.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
@@ -296,7 +281,7 @@ class _homePageState extends State<homePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               spacing: 5,
                               children: [
-                                ReusableWidgets.specialText(text: "Women's Daily 03", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Women's Daily 05", color: blue, fontSize: 12),
                                 ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
                               ]
                             )
@@ -312,7 +297,7 @@ class _homePageState extends State<homePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset("assets/homePage/Categories/menLuxury/menLuxury_04.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Image.asset("assets/Categories/menDaily/menDaily_09.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
@@ -321,7 +306,7 @@ class _homePageState extends State<homePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               spacing: 5,
                               children: [
-                                ReusableWidgets.specialText(text: "Men's Luxury 04", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Men's Daily 09", color: blue, fontSize: 12),
                                 ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
                               ]
                             )
@@ -337,7 +322,7 @@ class _homePageState extends State<homePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset("assets/homePage/Categories/womenDaily/womenDaily_04.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
+                          Image.asset("assets/Categories/womenLuxury/womenLuxury_05.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
                           Container(
                             alignment: Alignment.centerLeft,
                             padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
@@ -346,7 +331,7 @@ class _homePageState extends State<homePage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               spacing: 5,
                               children: [
-                                ReusableWidgets.specialText(text: "Women's Daily 04", color: blue, fontSize: 12),
+                                ReusableWidgets.specialText(text: "Women's Luxury 05", color: blue, fontSize: 12),
                                 ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
                               ]
                             )
