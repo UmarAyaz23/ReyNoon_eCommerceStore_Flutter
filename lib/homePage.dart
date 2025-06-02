@@ -17,7 +17,7 @@ class _homePageState extends State<homePage> {
   final List<Widget> _screens = [
     const homePage(),
     const shopPage(),
-    const contactPage(),
+    const shopPage(),
     profilePage(),
   ];
 
@@ -37,6 +37,8 @@ class _homePageState extends State<homePage> {
   ];
 
 
+
+/*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(

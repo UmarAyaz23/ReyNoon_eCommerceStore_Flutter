@@ -1,14 +1,38 @@
 import 'package:ecommerce_project/imports.dart';
 
+class profilePage extends StatefulWidget {
+  const profilePage({super.key});
 
-class profilePage extends StatelessWidget {
-  profilePage({super.key});
+  @override
+  State<profilePage> createState()=> _profilePageState();
+}
+
+class _profilePageState extends State<profilePage> {
+  int _selectedIndex = 0;
+  final List<Widget> _screens = [
+    const homePage(),
+    const shopPage(),
+    const shopPage(),
+    const profilePage(),
+  ];
+
+  void _onItemTapped(int index) {
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => _screens[index]),);
+
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   final List<Map<String, dynamic>> generalOptions = [
     {'icon': Icon(Icons.help_center_rounded, size: 25, color: gold,), 'text': Text('Help Center', style: TextStyle(color: gold, fontSize: 16, fontWeight: FontWeight.normal))},
     {'icon': Icon(Icons.policy_rounded, size: 25, color: gold,), 'text': Text('Terms & Policies', style: TextStyle(color: gold, fontSize: 16, fontWeight: FontWeight.normal))},
     {'icon': Icon(Icons.payment_rounded, size: 25, color: gold,), 'text': Text('Payment Methods', style: TextStyle(color: gold, fontSize: 16, fontWeight: FontWeight.normal))},
   ];
 
+
+
+/*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +62,7 @@ class profilePage extends StatelessWidget {
 
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.asset("assets/homePage/Banner_01.jpg", fit: BoxFit.cover,),
+                  child: Image.asset("assets/Banner_01.jpg", fit: BoxFit.cover,),
                 ),
               ),
               
@@ -129,7 +153,22 @@ class profilePage extends StatelessWidget {
             ],
           ),
         )
-      )
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home",),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shop"),
+          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
+        ],
+        backgroundColor: blue,
+        selectedItemColor: gold,
+        unselectedItemColor: gold,
+        onTap: _onItemTapped,
+        currentIndex: _selectedIndex,
+      ),
     );
   }
 }
