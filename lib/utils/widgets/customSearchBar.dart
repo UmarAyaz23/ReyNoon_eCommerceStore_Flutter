@@ -10,6 +10,7 @@ class customSearchBar extends StatelessWidget {
     return Padding(
       padding: EdgeInsetsGeometry.all(10),
       child: TextField(
+        
         style: appTextStyles.withColor(
           appTextStyles.buttonMid, 
           Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black

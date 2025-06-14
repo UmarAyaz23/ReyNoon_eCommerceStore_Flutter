@@ -1,6 +1,4 @@
 import 'package:ecommerce_project/imports.dart';
-import 'package:flutter/rendering.dart';
-
 
 class homePage extends StatefulWidget {
   const homePage({super.key});
@@ -10,25 +8,6 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
-  void navigateToShopPage(BuildContext context, String category) {
-    Navigator.pushNamed(context, '/shop', arguments: {'category': category});
-  }
-
-  int _selectedIndex = 0;
-  final List<Widget> _screens = [
-    const homePage(),
-    const shopPage(),
-    const shopPage(),
-    profilePage(),
-  ];
-
-  void _onItemTapped(int index) {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => _screens[index]),);
-
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   final List<String> sliderList = [
     "assets/Categories/menLuxury/menLuxury_01.jpg", 
@@ -41,6 +20,9 @@ class _homePageState extends State<homePage> {
 /*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+    final userEmail = user?.email ?? "Guest_Email";
+
     return Scaffold(
       appBar: AppBar(title: 
         Row(
@@ -51,14 +33,14 @@ class _homePageState extends State<homePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Hello ${FirebaseAuth.instance.currentUser!.email}", style: appTextStyles.bodySmall),
+                  Text("Hello $userEmail", style: appTextStyles.bodySmall),
                   Text("Good Morning!", style: appTextStyles.h3),
                 ]
               )
             ),
 
             GestureDetector(
-              onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
+              onTap: () {},
               child: Icon(Icons.shopping_bag_outlined, size: 30,)
             )
           ]
@@ -129,18 +111,6 @@ class _homePageState extends State<homePage> {
             ),
           ]
         ),
-      ),
-      
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home",),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shop"),
-          BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
       ),
     );
   }

@@ -9,94 +9,145 @@ class accountPage extends StatefulWidget {
 
 class _accountPageState extends State<accountPage> {
 
+  final List<Map<String, dynamic>> generalOptions = [
+    {'icon': Icon(Icons.help_center_rounded, size: 25, color: gold,), 'text': Text('Help Center', style: appTextStyles.bodyLarge)},
+    {'icon': Icon(Icons.policy_rounded, size: 25, color: gold,), 'text': Text('Terms & Policies', style: appTextStyles.bodyLarge)},
+    {'icon': Icon(Icons.payment_rounded, size: 25, color: gold,), 'text': Text('Payment Methods', style: appTextStyles.bodyLarge)},
+  ];
+
+
+
 /*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
-@override
+  @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+    final userEmail = user?.email ?? "Guest_email";
+    
     return Scaffold(
-      appBar: AppBar(
-        title: ReusableWidgets.headText(text: "Account", color: gold),
-        backgroundColor: blue,
+      appBar: AppBar(title: 
+        Text(
+          "Account",
+          style: appTextStyles.h3,
+        ),
+
+        shape: Border(
+          bottom: BorderSide(color: Colors.grey[600]!)
+        ),
       ),
 
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(15),
+          padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: Align(alignment: Alignment.center, child: Icon(Icons.person, size: MediaQuery.of(context).size.width * 0.3, color: blue,),)
+              ListTile(
+                minVerticalPadding: 0,
+                minLeadingWidth: 0,
+                minTileHeight: 50,
+                contentPadding: EdgeInsets.only(top: 10, bottom: 10, right: 0, left: 10),
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Icon(Icons.person, size: 25, color: gold,),
+                ),
+                title: Text("Username", style: appTextStyles.h3,),
+                subtitle: Text("$userEmail", style: appTextStyles.bodySmall,),
+                trailing: IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => profilePage()));}, icon: Icon(Icons.edit_note, size: 35, color: gold)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  side: BorderSide(color: Colors.grey[400]!, width: 1)
+                ),
               ),
 
-              SizedBox(height: 15,),
-              Divider(thickness: 1, color: Colors.grey,),
-              SizedBox(height: 5,),
-              ReusableWidgets.specialText(text: "Profile Information", color: blue, fontSize: 18),
-              SizedBox(height: 15,),
+              //Tiles
+              Padding(
+                padding: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 0, end: 0),
+                child: GridView.count(
+                  physics: NeverScrollableScrollPhysics(),
+                  crossAxisCount: 3,
+                  shrinkWrap: true,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 1.5,
+                  children: [
+                    {'icon': Icon(RIcon.List, size: 25, color: white,), 'text': 'Orders'},
+                    {'icon': Icon(Icons.shopping_bag, size: 25, color: white,), 'text': 'Cart'},
+                    {'icon': Icon(Icons.map_rounded, size: 25, color: white,), 'text': 'Addresses'},
+                  ].map<Widget>((path) {
+                    final Icon icon = path['icon'] as Icon;
+                    final String text = path['text'] as String;
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Name", color: Colors.grey, fontSize: 16)),),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Name", color: blue, fontSize: 16)),),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.edit, size: 16, color: Colors.grey))),
-                ]
+                    return Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: gold
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          icon,
+                          ReusableWidgets.specialText(text: text, color: white, fontSize: 16)
+                        ],
+                      )
+                    );
+                  }).toList()
+                )
               ),
+
+              //General Options
+              Container(
+                margin: EdgeInsets.only(top: 10),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: white,
+                  borderRadius: BorderRadius.circular(15) ,
+                  border: Border.all(color: Colors.grey[400]!, width: 1)
+                ),
+
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: generalOptions.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      leading: generalOptions[index]["icon"],
+                      title: generalOptions[index]["text"],
+                      trailing: Icon(Icons.arrow_forward_ios_rounded, size: 25, color: gold,),
+                      tileColor: white,
+                    );
+                  }
+                ),
+              ),
+
               SizedBox(height: 10,),
-
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Username", color: Colors.grey, fontSize: 16)),),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Username", color: blue, fontSize: 16)),),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.edit, size: 16, color: Colors.grey))),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => signInPage()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: white,
+                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.grey[400]!, width: 1),
+                          borderRadius: BorderRadius.circular(15)
+                        ),
+                      ),
+                      child: Text("Log Out", style: appTextStyles.withColor(appTextStyles.labelMid, Colors.grey[600]!))
+                    )
+                  )
                 ]
-              ),
-
-
-              SizedBox(height: 25,),
-              Divider(thickness: 1, color: Colors.grey,),
-              SizedBox(height: 5,),
-              ReusableWidgets.specialText(text: "Personal Information", color: blue, fontSize: 18),
-              SizedBox(height: 15,),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "User ID", color: Colors.grey, fontSize: 16)),),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "User ID", color: blue, fontSize: 16)),),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy, size: 16, color: Colors.grey))),
-                ]
-              ),
-              SizedBox(height: 10,),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Email", color: Colors.grey, fontSize: 16)),),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Username@email.com", color: blue, fontSize: 16)),),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy, size: 16, color: Colors.grey))),
-                ]
-              ),
-              SizedBox(height: 10,),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "Phone", color: Colors.grey, fontSize: 16)),),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: ReusableWidgets.specialText(text: "0318 2696611", color: blue, fontSize: 16)),),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy, size: 16, color: Colors.grey))),
-                ]
-              ),
-              SizedBox(height: 10,),
-
-              Divider(color: Colors.grey,)
+              )
             ],
           ),
         )
-      )
+      ),
     );
   }
 }

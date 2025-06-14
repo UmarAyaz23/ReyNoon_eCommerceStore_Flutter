@@ -15,8 +15,8 @@ class productCard extends StatelessWidget {
       ),
 
       decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.grey[600]!, width: 1),
+        borderRadius: BorderRadius.circular(16),
       ),
 
       child: Column(
@@ -69,7 +69,7 @@ class productCard extends StatelessWidget {
                         appTextStyles.withWeight(
                           appTextStyles.bodyLarge, FontWeight.bold
                         ), 
-                        Theme.of(context).textTheme.bodyLarge!.color!),
+                        const Color.fromARGB(255, 16, 133, 35)),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                     )

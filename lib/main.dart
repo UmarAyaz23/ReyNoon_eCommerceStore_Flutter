@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/imports.dart';
+import 'package:flutter/foundation.dart';
 
 void main() async { 
 
@@ -35,7 +36,7 @@ class eCommerce extends StatelessWidget {
       title: 'ReyNoon',
       debugShowCheckedModeBanner: false,
       theme: appTheme.deepBlue,
-      home: signInPage(),
+      home: MainNavigation(),
     );
   }
 }
