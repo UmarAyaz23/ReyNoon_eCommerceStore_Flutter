@@ -39,6 +39,10 @@ dependencies:
   google_maps_flutter: ^2.12.2
   r_icon_pro: ^1.0.3
   velocity_x: ^4.3.1
+  google_fonts: ^6.2.1
+  get: ^4.6.6
+  get_storage: ^2.1.1
+  share_plus: ^10.1.3
 
 
 dev_dependencies:

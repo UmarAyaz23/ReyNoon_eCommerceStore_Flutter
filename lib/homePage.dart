@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/imports.dart';
+import 'package:flutter/rendering.dart';
 
 
 class homePage extends StatefulWidget {
@@ -37,7 +38,6 @@ class _homePageState extends State<homePage> {
   ];
 
 
-
 /*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
   @override
   Widget build(BuildContext context) {
@@ -48,20 +48,24 @@ class _homePageState extends State<homePage> {
           children: <Widget>[
             GestureDetector(
               onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Image.asset("assets/Logo.png", height: 40,),
-                  SizedBox(width: 10,),
-                  Text("REYNOON", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: gold))
+                  Text("Hello ${FirebaseAuth.instance.currentUser!.email}", style: appTextStyles.bodySmall),
+                  Text("Good Morning!", style: appTextStyles.h3),
                 ]
               )
             ),
 
             GestureDetector(
               onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
-              child: Icon(Icons.shopping_bag, size: 30,)
+              child: Icon(Icons.shopping_bag_outlined, size: 30,)
             )
           ]
+        ),
+
+        shape: Border(
+          bottom: BorderSide(color: Colors.grey[600]!)
         ),
       ),
 
@@ -69,14 +73,9 @@ class _homePageState extends State<homePage> {
         child: Column(
           children: [
             //What's New
-            Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 0, bottom: 0, start: 5, end: 5),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: gold, width: 2)),
-              ),
-              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "What's New", color: gold),)
+            Padding(
+              padding: EdgeInsetsGeometry.only(left: 10, right: 10, top: 40, bottom: 0),
+              child: Text("What's New", style: appTextStyles.withColor(appTextStyles.h2, Colors.grey[600]!)),
             ),
 
             VxSwiper.builder(
@@ -87,7 +86,7 @@ class _homePageState extends State<homePage> {
               itemCount: sliderList.length,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.only(top: 7, bottom: 0, left: 10, right: 10),
+                  margin: EdgeInsets.only(top: 10, bottom: 0, left: 10, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(15),
                     child: Image.asset(sliderList[index], fit: BoxFit.cover)
@@ -97,253 +96,36 @@ class _homePageState extends State<homePage> {
             ),
 
 
-            //Our Offerings
-            Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 20, bottom: 0, start: 5, end: 5),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: gold, width: 2)),
-              ),
-              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Our Offerings", color: gold),)
-            ),
-
-            Padding(
-              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
-              child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 4,
-                shrinkWrap: true,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 5,
-                children: [
-                  {'icon': Icon(RIcon.Delivery, size: 25, color: white,), 'text': 'Free Delivery'},
-                  {'icon': Icon(RIcon.User_Plus_Rounded, size: 25, color: white,), 'text': '24/7 Support'},
-                  {'icon': Icon(Icons.find_replace, size: 25, color: white,), 'text': '7 Days Replacement'},
-                  {'icon': Icon(RIcon.Medal_Star_Circle, size: 25, color: white,), 'text': '1 Year Warranty'},
-                ].map<Widget>((path) {
-                  final Icon icon = path['icon'] as Icon;
-                  final String text = path['text'] as String;
-
-                  return Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: gold
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        icon,
-                        SizedBox(height: 10,),
-                        ReusableWidgets.specialText(text: text, color: white, fontSize: 11)
-                      ],
-                    )
-                  );
-                }).toList()
-              )
-            ),
-
-
             //Categories
-            Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 20, bottom: 0, start: 5, end: 5),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: gold, width: 2)),
-              ),
-              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Categories", color: gold),)
+            Padding(
+              padding: EdgeInsetsGeometry.only(left: 10, right: 10, top: 40, bottom: 0),
+              child: Text("Categories", style: appTextStyles.withColor(appTextStyles.h2, Colors.grey[600]!)),
             ),
 
             Padding(
-              padding: EdgeInsetsDirectional.only(top: 7, bottom: 0, start: 5, end: 5),
-              child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 4,
-                shrinkWrap: true,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 5,
-                children: [
-                  "assets/Categories/menLuxury/menluxury_Banner.jpg",
-                  "assets/Categories/womenLuxury/womenluxury_Banner.jpg",
-                  "assets/Categories/menDaily/menDaily_Banner.jpg",
-                  "assets/Categories/womenDaily/womenDaily_Banner.jpg",  
-                ].map<Widget>((path) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.transparent
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.asset(path, fit: BoxFit.cover,),
-                        ),
-                      ]
-                    )
-                  );
-                }).toList()
-              )
+              padding: EdgeInsetsGeometry.only(left: 10, right: 0, top: 10, bottom: 0),
+              child: Expanded(child: categoryChips(),),
             ),
 
-            Padding(
-              padding: EdgeInsetsDirectional.only(top: 5, bottom: 0, start: 5, end: 5),
-              child: GridView.count(
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 4,
-                shrinkWrap: true,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 5,
-                childAspectRatio: 3,
-                children: [
-                  {'name': 'Luxury - Men', 'color': gold},
-                  {'name': 'Luxury - Women', 'color': gold},
-                  {'name': 'Daily - Men', 'color': gold},
-                  {'name': 'Daily - Women', 'color': gold}, 
-                ].map<Widget>((names) {
-                  final String name = names['name'] as String;
-                  final Color color = names['color'] as Color;
-
-                  return SizedBox(
-                    child: Container(
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: color, width: 1.5)
-                      ),
-                      child: Align(alignment: Alignment.center, child: ReusableWidgets.specialText(text: name, color: gold, fontSize: 11))
-                    )
-                  );
-                }).toList()
-              )
-            ),
-          
           
             //Featured
-            Container(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: MediaQuery.of(context).size.height * 0.05,
-              margin: EdgeInsetsDirectional.only(top: 20, bottom: 0, start: 5, end: 5),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: gold, width: 2)),
-              ),
-              child: Align(alignment: Alignment.bottomCenter, child: ReusableWidgets.headText(text: "Featured", color: gold),)
+            Padding(
+              padding: EdgeInsetsGeometry.only(left: 10, right: 10, top: 40, bottom: 0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Featured", style: appTextStyles.withColor(appTextStyles.h2, Colors.grey[600]!)),
+                  GestureDetector(
+                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => shopPage())),
+                    child: Text("See All", style: appTextStyles.withColor(appTextStyles.buttonMid, Theme.of(context).primaryColor))
+                  )
+                ],
+              )
             ),
 
-            Container(
-              margin: EdgeInsets.only(top: 7, bottom: 10, left: 0, right: 0),
-              padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-              color: blue,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 10),
-                      padding: EdgeInsets.all(5),
-                      color: white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/Categories/menLuxury/menLuxury_05.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 5,
-                              children: [
-                                ReusableWidgets.specialText(text: "Men's Luxury 05", color: blue, fontSize: 12),
-                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
-                              ]
-                            )
-                          )
-                        ],
-                      ),
-                    ),
-
-                    Container(
-                      margin: EdgeInsets.only(right: 10),
-                      padding: EdgeInsets.all(5),
-                      color: white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/Categories/womenDaily/womenDaily_05.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 5,
-                              children: [
-                                ReusableWidgets.specialText(text: "Women's Daily 05", color: blue, fontSize: 12),
-                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
-                              ]
-                            )
-                          )
-                        ],
-                      ),
-                    ),
-
-                    Container(
-                      margin: EdgeInsets.only(right: 10),
-                      padding: EdgeInsets.all(5),
-                      color: white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/Categories/menDaily/menDaily_09.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 5,
-                              children: [
-                                ReusableWidgets.specialText(text: "Men's Daily 09", color: blue, fontSize: 12),
-                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
-                              ]
-                            )
-                          )
-                        ],
-                      ),
-                    ),
-
-                    Container(
-                      margin: EdgeInsets.only(right: 10),
-                      padding: EdgeInsets.all(5),
-                      color: white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset("assets/Categories/womenLuxury/womenLuxury_05.jpg", fit: BoxFit.cover, height: MediaQuery.of(context).size.width * 0.3,),
-                          Container(
-                            alignment: Alignment.centerLeft,
-                            padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              spacing: 5,
-                              children: [
-                                ReusableWidgets.specialText(text: "Women's Luxury 05", color: blue, fontSize: 12),
-                                ReusableWidgets.specialText(text: "Rs. 2500/-", color: Colors.green, fontSize: 12),
-                              ]
-                            )
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+            Padding(
+              padding: EdgeInsetsGeometry.only(left: 10, right: 10, top: 10, bottom: 20),
+              child: Expanded(child: productGrid(aspectRatio: 1, childAspectRatio: 0.65,)),
             ),
           ]
         ),
@@ -357,9 +139,6 @@ class _homePageState extends State<homePage> {
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shop"),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
         ],
-        backgroundColor: blue,
-        selectedItemColor: gold,
-        unselectedItemColor: gold,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
       ),

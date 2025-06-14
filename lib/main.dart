@@ -23,7 +23,7 @@ void main() async {
 }
 
 final Color gold = Color(0xFFdbab2c);
-final Color blue = Color(0xFF010b13);
+final Color blue = Color(0xFF121212);
 final Color white = Color(0xFFFFFFFF);
 
 class eCommerce extends StatelessWidget {
@@ -34,20 +34,8 @@ class eCommerce extends StatelessWidget {
     return MaterialApp(
       title: 'ReyNoon',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Roboto-VariableFont_wdth,wght',
-        primaryColor: gold,
-        scaffoldBackgroundColor: white,
-        appBarTheme: AppBarTheme(
-          backgroundColor: blue,
-          foregroundColor: gold
-        ),
-        textSelectionTheme: TextSelectionThemeData(
-          selectionColor: Color.fromRGBO(219, 171, 44, 0.2),
-          selectionHandleColor: gold
-        ),
-      ),
-      home: homePage(),
+      theme: appTheme.deepBlue,
+      home: signInPage(),
     );
   }
 }

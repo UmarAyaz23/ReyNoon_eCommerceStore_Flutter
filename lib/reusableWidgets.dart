@@ -53,7 +53,7 @@ class ReusableWidgets {
       text,
       style: TextStyle(
         fontSize: 16,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w300,
         color: color,
         fontFamily: "Nunito-VariableFont_wght"
       ),
@@ -70,7 +70,7 @@ class ReusableWidgets {
       text,
       style: TextStyle(
         fontSize: 20,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w500,
         color: color,
       ),
     );
@@ -87,7 +87,7 @@ class ReusableWidgets {
       text,
       style: TextStyle(
         fontSize: fontSize,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.w300,
         color: color,
         fontFamily: "Nunito-VariableFont_wght",
         overflow: TextOverflow.fade

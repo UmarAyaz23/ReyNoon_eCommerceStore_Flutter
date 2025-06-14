@@ -1,3 +1,4 @@
+import 'package:ecommerce_project/accountPage.dart';
 import 'package:ecommerce_project/imports.dart';
 
 class profilePage extends StatefulWidget {
@@ -46,26 +47,26 @@ class _profilePageState extends State<profilePage> {
           padding: const EdgeInsets.all(10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
+            
             children: [
-              SizedBox(height: 10,),
-              ReusableWidgets.headText(text: FirebaseAuth.instance.currentUser?.displayName ?? FirebaseAuth.instance.currentUser?.email ?? "User", color: gold),
-
-              //Banner
-              Container(
-                margin: const EdgeInsets.only(top: 10),
-                height: 90,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: gold
+              ListTile(
+                minVerticalPadding: 0,
+                minLeadingWidth: 0,
+                minTileHeight: 50,
+                contentPadding: EdgeInsets.only(top: 10, bottom: 10, right: 0, left: 10),
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Icon(Icons.person, size: 25, color: gold,),
                 ),
-
-                child: ClipRRect(
+                title: ReusableWidgets.specialText(text: "Username", color: gold, fontSize: 16),
+                subtitle: ReusableWidgets.specialText(text: "Username@email.com", color: gold, fontSize: 12),
+                trailing: IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => accountPage()));}, icon: Icon(Icons.edit_note, size: 35, color: gold,)),
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.asset("assets/Banner_01.jpg", fit: BoxFit.cover,),
+                  side: BorderSide(color: gold, width: 1)
                 ),
               ),
-              
+
               //Tiles
               Padding(
                 padding: EdgeInsetsDirectional.only(top: 10, bottom: 0, start: 0, end: 0),
@@ -78,7 +79,7 @@ class _profilePageState extends State<profilePage> {
                   childAspectRatio: 1.5,
                   children: [
                     {'icon': Icon(RIcon.List, size: 25, color: white,), 'text': 'Orders'},
-                    {'icon': Icon(RIcon.Heart_, size: 25, color: white,), 'text': 'Favourites'},
+                    {'icon': Icon(Icons.shopping_bag, size: 25, color: white,), 'text': 'Cart'},
                     {'icon': Icon(Icons.map_rounded, size: 25, color: white,), 'text': 'Addresses'},
                   ].map<Widget>((path) {
                     final Icon icon = path['icon'] as Icon;
@@ -109,7 +110,7 @@ class _profilePageState extends State<profilePage> {
                 decoration: BoxDecoration(
                   color: white,
                   borderRadius: BorderRadius.circular(15) ,
-                  border: Border.all(color: gold, width: 1.5)
+                  border: Border.all(color: gold, width: 1)
                 ),
 
                 child: ListView.builder(
@@ -141,7 +142,7 @@ class _profilePageState extends State<profilePage> {
                         padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(color: gold, width: 1.5),
+                          side: BorderSide(color: gold, width: 1),
                           borderRadius: BorderRadius.circular(15)
                         ),
                       ),
@@ -163,9 +164,6 @@ class _profilePageState extends State<profilePage> {
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: "Shop"),
           BottomNavigationBarItem(icon: Icon(Icons.people), label: "Profile"),
         ],
-        backgroundColor: blue,
-        selectedItemColor: gold,
-        unselectedItemColor: gold,
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
       ),
