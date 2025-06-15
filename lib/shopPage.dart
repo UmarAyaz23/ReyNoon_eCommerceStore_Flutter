@@ -17,7 +17,6 @@ class shopPage extends StatefulWidget {
 class _shopPageState extends State<shopPage> {
   List<shopPageProduct> allProducts = [];
   List<shopPageProduct> displayedProducts = [];
-  bool isLoading = true;
 
   @override
   void initState() {
@@ -26,33 +25,23 @@ class _shopPageState extends State<shopPage> {
   }
 
   void loadProducts() async {
-    allProducts = await ProductService.fetchProducts();
+    final products = await ProductService.fetchProducts();
     setState(() {
-      displayedProducts = allProducts;
-      isLoading = false;
+      allProducts = products;
+      displayedProducts = products;
     });
   }
-
-  void updateSearch(String query) {
-    final results = allProducts.where((product) {
-      return product.name.toLowerCase().contains(query.toLowerCase());
-    }).toList();
-
-    setState(() {
-      displayedProducts = results;
-    });
-  }
-
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final userEmail = user?.email ?? "Guest_Email";
     final screenWidth = MediaQuery.of(context).size.width;
+    final cart = Provider.of<CartController>(context);
 
     return Scaffold(
-      appBar: AppBar(title: 
-        Row(
+      appBar: AppBar(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             GestureDetector(
@@ -65,25 +54,41 @@ class _shopPageState extends State<shopPage> {
                 ]
               )
             ),
-
             GestureDetector(
-              onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage())),
-              child: Icon(Icons.shopping_bag_outlined, size: 30,)
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage())),
+              child: Stack(
+                clipBehavior: Clip.none,
+                
+                children: [
+                  Icon(Icons.shopping_bag_outlined, size: 30,),
+                  if (cart.cartItemCount > 0) 
+                    Positioned(
+                      top: -5,
+                      left: -5,
+                      child: Container(
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                        ),
+                        child: Text(
+                          cart.cartItemCount.toString(),
+                          style: appTextStyles.withColor(appTextStyles.bodySmall, white),
+                        ),
+                      )
+                    )
+                ]
+              ),
             )
           ]
         ),
-
-        shape: Border(
-          bottom: BorderSide(color: Colors.grey[600]!)
-        ),
+        shape: Border(bottom: BorderSide(color: Colors.grey[600]!)),
       ),
-
       body: SingleChildScrollView(
         child: Column(
           children: [
             customSearchBar(),
 
-            //Products
             Padding(
               padding: EdgeInsetsGeometry.only(left: 10, right: 10, top: 0, bottom: 5),
               child: GridView.builder(
@@ -95,23 +100,17 @@ class _shopPageState extends State<shopPage> {
                 ), 
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-
                 itemCount: displayedProducts.length,
                 itemBuilder: (context, index) {
                   final product = displayedProducts[index];
-
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {Navigator.push(context, MaterialPageRoute(builder: (context) => productPage(productPageProduct: product,)));},
                     child: Container(
-                      constraints: BoxConstraints(
-                        maxWidth: screenWidth * 0.9
-                      ),
-
+                      constraints: BoxConstraints(maxWidth: screenWidth * 0.9),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey[600]!, width: 1),
                         borderRadius: BorderRadius.circular(16),
                       ),
-
                       child: Column(
                         children: [
                           Stack(
@@ -120,51 +119,37 @@ class _shopPageState extends State<shopPage> {
                                 aspectRatio: 1,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                                  child: Image.asset(product.imagePath, width: double.infinity, fit: BoxFit.cover,),
+                                  child: Image.network(product.imagePath, width: double.infinity, fit: BoxFit.cover),
                                 ),
                               )
                             ],
                           ),
-
                           Padding(
                             padding: EdgeInsets.all(screenWidth * 0.02),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  product.name, 
+                                Text(product.name, 
                                   style: appTextStyles.withColor(
-                                    appTextStyles.withWeight(
-                                      appTextStyles.h3, FontWeight.bold
-                                    ), 
-                                  Theme.of(context).textTheme.bodyLarge!.color!),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                SizedBox(height: screenWidth * 0.01,),
-
-                                Text(
-                                  product.category, 
-                                  style: appTextStyles.withColor(
-                                    appTextStyles.bodyMid,
-                                    Colors.grey[600]!
+                                    appTextStyles.withWeight(appTextStyles.h3, FontWeight.bold), 
+                                    Theme.of(context).textTheme.bodyLarge!.color!
                                   ),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1, overflow: TextOverflow.ellipsis,
                                 ),
-                                SizedBox(height: screenWidth * 0.01,),
-
+                                SizedBox(height: screenWidth * 0.01),
+                                Text(product.category, 
+                                  style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.grey[600]!),
+                                  maxLines: 1, overflow: TextOverflow.ellipsis,
+                                ),
+                                SizedBox(height: screenWidth * 0.01),
                                 Row(
                                   children: [
-                                    Text(
-                                      "PKR ${product.price}/-", 
+                                    Text("PKR ${product.price}/-", 
                                       style: appTextStyles.withColor(
-                                        appTextStyles.withWeight(
-                                          appTextStyles.bodyLarge, FontWeight.bold
-                                        ), 
-                                        const Color.fromARGB(255, 16, 133, 35)),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
+                                        appTextStyles.withWeight(appTextStyles.bodyLarge, FontWeight.bold), 
+                                        const Color.fromARGB(255, 16, 133, 35)
+                                      ),
+                                      maxLines: 1, overflow: TextOverflow.ellipsis,
                                     )
                                   ],
                                 )

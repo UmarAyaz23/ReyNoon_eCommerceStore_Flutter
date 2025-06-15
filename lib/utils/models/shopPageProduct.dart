@@ -13,7 +13,7 @@ class shopPageProduct {
       category: data['category'] ?? '',
       imagePath: data['imagePath'] ?? '',
       name: data['name'] ?? '',
-      price: data['price'] ?? '',
+      price: (data['price'] ?? 0).toDouble(),
     );
   }
 }

@@ -22,6 +22,7 @@ class _homePageState extends State<homePage> {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     final userEmail = user?.email ?? "Guest_Email";
+    final cart = Provider.of<CartController>(context);
 
     return Scaffold(
       appBar: AppBar(title: 
@@ -40,8 +41,30 @@ class _homePageState extends State<homePage> {
             ),
 
             GestureDetector(
-              onTap: () {},
-              child: Icon(Icons.shopping_bag_outlined, size: 30,)
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage())),
+              child: Stack(
+                clipBehavior: Clip.none,
+                
+                children: [
+                  Icon(Icons.shopping_bag_outlined, size: 30,),
+                  if (cart.cartItemCount > 0) 
+                    Positioned(
+                      top: -5,
+                      left: -5,
+                      child: Container(
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.red,
+                        ),
+                        child: Text(
+                          cart.cartItemCount.toString(),
+                          style: appTextStyles.withColor(appTextStyles.bodySmall, white),
+                        ),
+                      )
+                    )
+                ]
+              ),
             )
           ]
         ),

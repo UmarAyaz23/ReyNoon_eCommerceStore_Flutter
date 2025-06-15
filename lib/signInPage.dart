@@ -57,7 +57,7 @@ class _signInPageState extends State<signInPage> {
                       email: _emailController.text,
                       password: _passwordController.text
                     ).then((value) {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => homePage()));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainNavigation()));
                     }).onError((error, stackTrace) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error ${error.toString()}")));
                     });

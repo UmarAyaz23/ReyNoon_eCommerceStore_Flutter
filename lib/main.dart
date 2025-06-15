@@ -20,11 +20,15 @@ void main() async {
     await Firebase.initializeApp();
   }
 
-  runApp(const eCommerce());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => CartController(),
+      child: const eCommerce(),   // your main app widget
+    )
+  );
 }
 
 final Color gold = Color(0xFFdbab2c);
-final Color blue = Color(0xFF121212);
 final Color white = Color(0xFFFFFFFF);
 
 class eCommerce extends StatelessWidget {
