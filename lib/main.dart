@@ -40,7 +40,7 @@ class eCommerce extends StatelessWidget {
       title: 'ReyNoon',
       debugShowCheckedModeBanner: false,
       theme: appTheme.deepBlue,
-      home: MainNavigation(),
+      home: signInPage(),
     );
   }
 }

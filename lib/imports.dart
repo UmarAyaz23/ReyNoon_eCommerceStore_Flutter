@@ -18,6 +18,7 @@ export 'package:ecommerce_project/utils/widgets/MainNavigation.dart';
 export 'package:ecommerce_project/utils/models/shopPageProduct.dart';
 export 'package:ecommerce_project/utils/models/product.dart';
 export 'package:ecommerce_project/utils/models/cartController.dart';
+export 'package:ecommerce_project/utils/models/fireStoreService.dart';
 
 export 'package:ecommerce_project/main.dart';
 export 'package:ecommerce_project/signInPage.dart';
@@ -27,6 +28,7 @@ export 'package:ecommerce_project/shopPage.dart';
 export 'package:ecommerce_project/productPage.dart';
 export 'package:ecommerce_project/cartPage.dart';
 export 'package:ecommerce_project/checkoutPage.dart';
+export 'package:ecommerce_project/orderConfirmPage.dart';
 export 'package:ecommerce_project/accountPage.dart';
 export 'package:ecommerce_project/profilePage.dart';
 export 'package:ecommerce_project/reusableWidgets.dart';

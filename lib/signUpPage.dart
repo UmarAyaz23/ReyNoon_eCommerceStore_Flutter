@@ -84,7 +84,14 @@ class _signUpPageState extends State<signUpPage> {
                     FirebaseAuth.instance.createUserWithEmailAndPassword(
                       email: _emailController.text,
                       password: _passwordController.text
-                    ).then((value) {
+                    ).then((UserCredential userCredential) async {
+                      User? user = userCredential.user; 
+                      await FirebaseFirestore.instance.collection('users').doc(user!.uid).set({
+                        "name": _nameController.text,
+                        "email": _emailController.text,
+                        "password": _passwordController.text,  // (better avoid in production)
+                        "orders": []
+                      });
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => signInPage()));
                     }).onError((error, stackTrace) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error ${error.toString()}")));

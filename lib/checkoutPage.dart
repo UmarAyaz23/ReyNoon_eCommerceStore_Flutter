@@ -7,6 +7,12 @@ class checkoutPage extends StatefulWidget {
 }
 
 class _checkoutPageState extends State<checkoutPage> {
+  final TextEditingController _houseController = TextEditingController();
+  final TextEditingController _streetController = TextEditingController();
+  final TextEditingController _blockController = TextEditingController();
+  final TextEditingController _townController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<CartController>(context);
@@ -85,24 +91,54 @@ class _checkoutPageState extends State<checkoutPage> {
               children: [
                 Text("Address", style: appTextStyles.h3),
                 SizedBox(height: 10),
-                customTextField(label: "House No.", prefixIcon: Icons.house_outlined, keyboardType: TextInputType.streetAddress, isPassword: false),
+                customTextField(label: "House No.", prefixIcon: Icons.house_outlined, keyboardType: TextInputType.name, isPassword: false, controller: _houseController,),
                 SizedBox(height: 10),
-                customTextField(label: "Street", prefixIcon: Icons.streetview_outlined, keyboardType: TextInputType.streetAddress, isPassword: false),
+                customTextField(label: "Street", prefixIcon: Icons.streetview_outlined, keyboardType: TextInputType.name, isPassword: false, controller: _streetController,),
                 SizedBox(height: 10),
-                customTextField(label: "Block", prefixIcon: Icons.rounded_corner_sharp, keyboardType: TextInputType.name, isPassword: false),
+                customTextField(label: "Block", prefixIcon: Icons.rounded_corner_sharp, keyboardType: TextInputType.name, isPassword: false, controller: _blockController,),
                 SizedBox(height: 10),
-                customTextField(label: "Town (Gulshan, Johar, etc..)", prefixIcon: Icons.streetview_outlined, keyboardType: TextInputType.streetAddress, isPassword: false),
+                customTextField(label: "Town (Gulshan, Johar, etc..)", prefixIcon: Icons.streetview_outlined, keyboardType: TextInputType.name, isPassword: false, controller: _townController),
                 SizedBox(height: 10),
-                customTextField(label: "City", prefixIcon: Icons.location_city_outlined, keyboardType: TextInputType.name, isPassword: false),
+                customTextField(label: "City", prefixIcon: Icons.location_city_outlined, keyboardType: TextInputType.name, isPassword: false, controller: _cityController,),
                 SizedBox(height: 20),
 
                 Row(
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () {
-                          // place order logic
+                        onPressed: () async {
+                          if (_houseController.text.isNotEmpty && _streetController.text.isNotEmpty &&
+                              _blockController.text.isNotEmpty && _townController.text.isNotEmpty && _cityController.text.isNotEmpty) {
+
+                            Map<String, String> address = {
+                              "house": _houseController.text,
+                              "street": _streetController.text,
+                              "block": _blockController.text,
+                              "town": _townController.text,
+                              "city": _cityController.text,
+                            };
+
+                            final firestoreService = FirestoreService();
+                            await firestoreService.placeOrder(
+                              products: cart.cartItems,
+                              subtotal: cart.calculateTotal(),
+                              address: address,
+                            );
+
+                            cart.clearCart();  // clear cart after order placed
+
+                            Navigator.pushReplacement(context, MaterialPageRoute(
+                              builder: (context) => orderConfirmPage(orderDetails: [
+                                address["house"]!,
+                                address["street"]!,
+                                address["block"]!,
+                                address["town"]!,
+                                address["city"]!,
+                              ]),
+                            ));
+                          }
                         },
+
                         style: ElevatedButton.styleFrom(
                           backgroundColor: white,
                           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
