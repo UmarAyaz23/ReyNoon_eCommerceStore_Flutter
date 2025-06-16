@@ -1,12 +1,5 @@
 import 'package:ecommerce_project/imports.dart';
 
-class ProductService {
-  static Future<List<shopPageProduct>> fetchProducts() async {
-    final snapshot = await FirebaseFirestore.instance.collection('products').get();
-    return snapshot.docs.map((doc) => shopPageProduct.fromFirestore(doc.data())).toList();
-  }
-}
-
 class shopPage extends StatefulWidget {
   const shopPage({super.key});
 
@@ -34,9 +27,8 @@ class _shopPageState extends State<shopPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-    final userEmail = user?.email ?? "Guest_Email";
     final screenWidth = MediaQuery.of(context).size.width;
+    final userDetails = Provider.of<fetchUserdetails>(context);
     final cart = Provider.of<CartController>(context);
 
     return Scaffold(
@@ -49,7 +41,9 @@ class _shopPageState extends State<shopPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text("Hello $userEmail", style: appTextStyles.bodySmall),
+                  userDetails.isLoading 
+                    ? CircularProgressIndicator() 
+                    : Text("Hello ${userDetails.userName ?? "Guest"}", style: appTextStyles.bodySmall),
                   Text("Good Morning!", style: appTextStyles.h3),
                 ]
               )

@@ -1,5 +1,6 @@
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
+export 'package:flutter/services.dart';
 export 'package:r_icon_pro/r_icon_pro.dart';
 export 'package:velocity_x/velocity_x.dart';
 export 'package:firebase_core/firebase_core.dart';
@@ -15,10 +16,13 @@ export 'package:ecommerce_project/utils/widgets/productCard.dart';
 export 'package:ecommerce_project/utils/widgets/productGrid.dart';
 export 'package:ecommerce_project/utils/widgets/categoryChips.dart';
 export 'package:ecommerce_project/utils/widgets/MainNavigation.dart';
+
 export 'package:ecommerce_project/utils/models/shopPageProduct.dart';
 export 'package:ecommerce_project/utils/models/product.dart';
 export 'package:ecommerce_project/utils/models/cartController.dart';
 export 'package:ecommerce_project/utils/models/fireStoreService.dart';
+export 'package:ecommerce_project/utils/models/ProductService.dart';
+export 'package:ecommerce_project/utils/models/fetchUserDetails.dart';
 
 export 'package:ecommerce_project/main.dart';
 export 'package:ecommerce_project/signInPage.dart';
@@ -29,6 +33,7 @@ export 'package:ecommerce_project/productPage.dart';
 export 'package:ecommerce_project/cartPage.dart';
 export 'package:ecommerce_project/checkoutPage.dart';
 export 'package:ecommerce_project/orderConfirmPage.dart';
+export 'package:ecommerce_project/userOrderPage.dart';
 export 'package:ecommerce_project/accountPage.dart';
 export 'package:ecommerce_project/profilePage.dart';
 export 'package:ecommerce_project/reusableWidgets.dart';

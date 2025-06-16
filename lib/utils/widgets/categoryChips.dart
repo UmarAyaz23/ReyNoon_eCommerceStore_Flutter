@@ -21,7 +21,7 @@ class categoryChips extends StatelessWidget {
             (index) {
               final product = categories[index];
               return GestureDetector(
-                onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => shopPage())),
+                onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainNavigation(selectedIndex: 2,))),
                 child: Container(
                   margin: EdgeInsets.only(right: 10, left: 0),
                   constraints: BoxConstraints(maxWidth: screenWidth * 0.5),

@@ -1,14 +1,21 @@
 import 'package:ecommerce_project/imports.dart';  // make sure all pages are correctly imported
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({super.key});
+  final int selectedIndex;
+  const MainNavigation({super.key, this.selectedIndex = 0});
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();
 }
 
 class _MainNavigationState extends State<MainNavigation> {
-  int _selectedIndex = 0;
+  late int _selectedIndex;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.selectedIndex;
+  }
 
   final List<Widget> _screens = [
     const homePage(),

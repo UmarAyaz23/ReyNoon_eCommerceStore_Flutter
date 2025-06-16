@@ -12,6 +12,15 @@ class _profilePageState extends State<profilePage> {
 /*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
 @override
   Widget build(BuildContext context) {
+    final userDetails = Provider.of<fetchUserdetails>(context);
+
+    void copyToClipboard(String text) {
+      Clipboard.setData(ClipboardData(text: text));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Copied to clipboard")),
+      );
+    }
+
     return Scaffold(
       appBar: AppBar(title: 
         Text(
@@ -46,8 +55,8 @@ class _profilePageState extends State<profilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: Text("Name", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.grey[600]!)))),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("Name", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy_all_outlined, color: gold))),
+                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("${userDetails.userName}", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
+                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: GestureDetector(onTap: () {copyToClipboard("${userDetails.userName}");}, child: Icon(Icons.copy_all_outlined, color: gold)))),
                 ]
               ),
               SizedBox(height: 10,),
@@ -56,8 +65,8 @@ class _profilePageState extends State<profilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: Text("Userame", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.grey[600]!)))),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("Usename", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy_all_outlined, color: gold))),
+                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("${userDetails.userName}", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
+                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: GestureDetector(onTap: () {copyToClipboard("${userDetails.userName}");}, child: Icon(Icons.copy_all_outlined, color: gold)))),
                 ]
               ),
 
@@ -72,8 +81,8 @@ class _profilePageState extends State<profilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: Text("User ID", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.grey[600]!)))),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("User ID", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy_all_outlined, color: gold))),
+                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("${userDetails.userID}", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
+                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: GestureDetector(onTap: () {copyToClipboard("${userDetails.userID}");}, child: Icon(Icons.copy_all_outlined, color: gold)))),
                 ]
               ),
               SizedBox(height: 10,),
@@ -82,8 +91,8 @@ class _profilePageState extends State<profilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: Text("Email", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.grey[600]!)))),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("Email", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
-                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy_all_outlined, color: gold))),
+                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("${userDetails.userEmail}", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
+                  Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: GestureDetector(onTap: () {copyToClipboard("${userDetails.userEmail}");}, child: Icon(Icons.copy_all_outlined, color: gold)))),
                 ]
               ),
               SizedBox(height: 10,),
@@ -92,7 +101,7 @@ class _profilePageState extends State<profilePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Expanded(flex: 3, child: Align(alignment: Alignment.centerLeft, child: Text("Phone", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.grey[600]!)))),
-                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("Phone Number", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
+                  Expanded(flex: 5, child: Align(alignment: Alignment.centerLeft, child: Text("N/A", style: appTextStyles.withColor(appTextStyles.bodyMid, Colors.black)))),
                   Expanded(flex: 1, child: Align(alignment: Alignment.centerRight, child: Icon(Icons.copy_all_outlined, color: gold))),
                 ]
               ),

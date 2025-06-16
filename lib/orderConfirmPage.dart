@@ -1,12 +1,17 @@
 import 'package:ecommerce_project/imports.dart';
 
-class orderConfirmPage extends StatelessWidget {
+class orderConfirmPage extends StatefulWidget {
   final List<String> orderDetails;
-
   const orderConfirmPage({super.key, required this.orderDetails});
 
   @override
+  State<orderConfirmPage> createState() => _orderConfirmPageState();
+}
+
+class _orderConfirmPageState extends State<orderConfirmPage>{
+  @override
   Widget build(BuildContext context) {
+    Provider.of<fetchUserdetails>(context, listen: false).fetchUserData();
     final cart = Provider.of<CartController>(context);
     final screenWidth = MediaQuery.of(context).size.width;
 
@@ -15,7 +20,6 @@ class orderConfirmPage extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             cart.clearCart();
-            Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
           }, 
@@ -36,11 +40,11 @@ class orderConfirmPage extends StatelessWidget {
               children: [
                 Text("Delivery Address", style: appTextStyles.h3),
                 SizedBox(height: 10),
-                Text("House No: ${orderDetails[0]}", style: appTextStyles.bodyMid),
-                Text("Street: ${orderDetails[1]}", style: appTextStyles.bodyMid),
-                Text("Block: ${orderDetails[2]}", style: appTextStyles.bodyMid),
-                Text("Town: ${orderDetails[3]}", style: appTextStyles.bodyMid),
-                Text("City: ${orderDetails[4]}", style: appTextStyles.bodyMid),
+                Text("House No: ${widget.orderDetails[0]}", style: appTextStyles.bodyMid),
+                Text("Street: ${widget.orderDetails[1]}", style: appTextStyles.bodyMid),
+                Text("Block: ${widget.orderDetails[2]}", style: appTextStyles.bodyMid),
+                Text("Town: ${widget.orderDetails[3]}", style: appTextStyles.bodyMid),
+                Text("City: ${widget.orderDetails[4]}", style: appTextStyles.bodyMid),
               ],
             ),
           ),

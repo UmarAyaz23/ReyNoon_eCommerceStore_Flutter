@@ -123,9 +123,7 @@ class _checkoutPageState extends State<checkoutPage> {
                               products: cart.cartItems,
                               subtotal: cart.calculateTotal(),
                               address: address,
-                            );
-
-                            cart.clearCart();  // clear cart after order placed
+                            ); // clear cart after order placed
 
                             Navigator.pushReplacement(context, MaterialPageRoute(
                               builder: (context) => orderConfirmPage(orderDetails: [

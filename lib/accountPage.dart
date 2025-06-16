@@ -20,8 +20,7 @@ class _accountPageState extends State<accountPage> {
 /*--------------------------------------------------------------------------------FRONT END--------------------------------------------------------------------------------*/
   @override
   Widget build(BuildContext context) {
-    final user = FirebaseAuth.instance.currentUser;
-    final userEmail = user?.email ?? "Guest_email";
+    final userDetails = Provider.of<fetchUserdetails>(context);
     
     return Scaffold(
       appBar: AppBar(title: 
@@ -52,7 +51,7 @@ class _accountPageState extends State<accountPage> {
                   child: Icon(Icons.person, size: 25, color: gold,),
                 ),
                 title: Text("Username", style: appTextStyles.h3,),
-                subtitle: Text("$userEmail", style: appTextStyles.bodySmall,),
+                subtitle: Text("${userDetails.userName}", style: appTextStyles.bodySmall,),
                 trailing: IconButton(onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => profilePage()));}, icon: Icon(Icons.edit_note, size: 35, color: gold)),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
@@ -71,25 +70,38 @@ class _accountPageState extends State<accountPage> {
                   crossAxisSpacing: 10,
                   childAspectRatio: 1.5,
                   children: [
-                    {'icon': Icon(RIcon.List, size: 25, color: white,), 'text': 'Orders'},
-                    {'icon': Icon(Icons.shopping_bag, size: 25, color: white,), 'text': 'Cart'},
-                    {'icon': Icon(Icons.map_rounded, size: 25, color: white,), 'text': 'Addresses'},
+                    {'icon': Icon(RIcon.List, size: 25, color: white,), 'text': 'Orders', 'goTo': userOrderPage(),},
+                    {'icon': Icon(Icons.shopping_bag, size: 25, color: white,), 'text': 'Cart', 'goTo': CartPage(),},
+                    {'icon': Icon(Icons.map_rounded, size: 25, color: white,), 'text': 'Addresses', 'goTo': null},
                   ].map<Widget>((path) {
                     final Icon icon = path['icon'] as Icon;
                     final String text = path['text'] as String;
+                    final Widget? goTo = path['goTo'] as Widget?;
 
-                    return Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: gold
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          icon,
-                          ReusableWidgets.specialText(text: text, color: white, fontSize: 16)
-                        ],
+                    return GestureDetector(
+                      onTap: () {
+                        if (goTo != null) {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => goTo));
+                        } else {
+                          // You can add some logic here if there's no screen yet
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Coming Soon"))
+                          );
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: gold
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            icon,
+                            ReusableWidgets.specialText(text: text, color: white, fontSize: 16)
+                          ],
+                        )
                       )
                     );
                   }).toList()

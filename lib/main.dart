@@ -21,10 +21,13 @@ void main() async {
   }
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => CartController(),
-      child: const eCommerce(),   // your main app widget
-    )
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => fetchUserdetails()),
+        ChangeNotifierProvider(create: (_) => CartController()),  // your cartController too
+      ],
+      child: const eCommerce(),
+    ),
   );
 }
 
