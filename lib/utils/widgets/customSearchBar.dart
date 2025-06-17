@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:ecommerce_project/utils/appTextStyles.dart';
+import 'package:ecommerce_project/imports.dart';
 
 class customSearchBar extends StatelessWidget {
-  const customSearchBar({super.key});
+  final Function(String) onChanged;
+  const customSearchBar({super.key, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsetsGeometry.all(10),
       child: TextField(
-        
+        onChanged: onChanged,
+
         style: appTextStyles.withColor(
           appTextStyles.buttonMid, 
           Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black

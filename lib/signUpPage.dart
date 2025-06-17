@@ -92,7 +92,7 @@ class _signUpPageState extends State<signUpPage> {
                         "password": _passwordController.text,  // (better avoid in production)
                         "orders": []
                       });
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => signInPage()));
+                      Navigator.pop(context);
                     }).onError((error, stackTrace) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error ${error.toString()}")));
                     });

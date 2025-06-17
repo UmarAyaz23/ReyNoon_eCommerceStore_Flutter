@@ -10,6 +10,7 @@ class shopPage extends StatefulWidget {
 class _shopPageState extends State<shopPage> {
   List<shopPageProduct> allProducts = [];
   List<shopPageProduct> displayedProducts = [];
+  final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
@@ -19,11 +20,13 @@ class _shopPageState extends State<shopPage> {
 
   void loadProducts() async {
     final products = await ProductService.fetchProducts();
+    if (!mounted) return;
     setState(() {
       allProducts = products;
       displayedProducts = products;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +84,17 @@ class _shopPageState extends State<shopPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            customSearchBar(),
+            customSearchBar(
+              onChanged: (value) {
+                setState(() {
+                  displayedProducts = allProducts.where((product) {
+                    final name = product.name.toLowerCase();
+                    final query = value.toLowerCase();
+                    return name.contains(query);
+                  }).toList();
+                });
+              },
+            ),
 
             Padding(
               padding: EdgeInsetsGeometry.only(left: 10, right: 10, top: 0, bottom: 5),

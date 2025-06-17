@@ -138,7 +138,7 @@ class _homePageState extends State<homePage> {
                 children: [
                   Text("Featured", style: appTextStyles.withColor(appTextStyles.h2, Colors.grey[600]!)),
                   GestureDetector(
-                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => shopPage())),
+                    onTap: () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainNavigation(selectedIndex: 2,))),
                     child: Text("See All", style: appTextStyles.withColor(appTextStyles.buttonMid, Theme.of(context).primaryColor))
                   )
                 ],
